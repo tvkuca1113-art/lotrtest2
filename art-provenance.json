@@ -1,0 +1,50 @@
+{
+  "project": "THE LAST HEARTH: RINGS OF THE NORTH",
+  "provenance": "Original artwork generated specifically for this project with the built-in image_gen tool. No external image references or stock sources. The prop atlas background was edited with image_gen while preserving the generated objects.",
+  "tool": "image_gen.imagegen",
+  "assets": [
+    {
+      "path": "last-hearth-title-backdrop.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "originalGeneratedPath": "/workspace/scratch/c4afd3ba77cc/generated_images/exec-8ee146d6-8576-46fb-b2b5-bc71d0b9e37f.png",
+      "prompt": "Use case: stylized-concept\nAsset type: original landscape title background for an isometric illustrated fantasy action RPG, THE LAST HEARTH: RINGS OF THE NORTH.\nPrimary request: a northern valley at dusk, a small stone castle with warmly lit windows and a central ember beacon, conifers, a worn road leading inward, layered snow mountains in the distance.\nStyle/medium: polished hand-painted fantasy game key art, painterly 2D illustration, delicately textured brushwork, elegant grounded medieval northern architecture.\nComposition/framing: landscape 1536 x 1024; castle and beacon mainly in the lower middle and right; a sweeping valley and snow peaks; dark broad low-detail negative space in the upper left for game-title overlay. Clear readable silhouettes, cinematic depth, no characters required.\nLighting/mood: last warm hearth against a vast cold twilight, amber windows and ember beacon illuminating the immediate stone, cool winter air and mist, hopeful but perilous.\nColor palette: charcoal #171C1B, forest green #203B2D, aged gold #C2A264, ember #CE7144, winter blue #95B6C6.\nMaterials/textures: weathered stone, old slate, evergreen needles, snow, winding rough earth road.\nText: no words, no lettering, no logos, no watermarks.\nConstraints: original artwork, absolutely no written title in the image, ample dark upper-left copy space."
+    },
+    {
+      "path": "last-hearth-prop-atlas-magenta.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "grid": {
+        "columns": 4,
+        "rows": 3
+      },
+      "objects": [
+        [
+          "conifer",
+          "leaf-tree",
+          "ruin-arch",
+          "moss-boulder"
+        ],
+        [
+          "cottage",
+          "forge",
+          "castle-keep",
+          "watchtower"
+        ],
+        [
+          "chest",
+          "beacon",
+          "tent",
+          "lantern-post"
+        ]
+      ],
+      "originalGeneratedPath": "/workspace/scratch/c4afd3ba77cc/generated_images/exec-2518e1bb-1c98-4309-8034-41720b133b4a.png",
+      "prompt": "Use case: stylized-concept\nAsset type: one original isometric game prop atlas for a northern fantasy action RPG, designed for clean colorkey and extraction into separate game sprites.\nPrimary request: exactly twelve standalone props, arranged in a strict invisible 4-column by 3-row grid of equal cells. Image landscape 1536 x 1024. Every cell has a flat solid bright pure magenta #FF00FF background. No grid lines.\nRow 1, left to right: 1 evergreen conifer tree; 2 deciduous leafy tree; 3 freestanding ancient stone ruin arch; 4 large mossy boulder.\nRow 2, left to right: 1 small wooden cottage with warm window; 2 compact stone forge building with an anvil visible at front; 3 small crenellated castle keep with warmly lit windows; 4 timber watchtower.\nRow 3, left to right: 1 wooden treasure chest; 2 ancient stone beacon pedestal holding a warm glowing ember flame; 3 patched canvas camp tent; 4 iron lantern post.\nStyle/medium: cohesive polished hand-painted 2D fantasy game sprites, consistent 3/4 isometric view looking down at about 30 degrees, detailed but readable silhouettes, soft painterly edges with crisp outer cutout boundaries.\nColor palette of objects: charcoal #171C1B, forest #203B2D, aged gold #C2A264, ember #CE7144, winter #95B6C6; background only pure #FF00FF.\nComposition/framing: each full object entirely within its own equal grid cell, centered horizontally with base near the cell's bottom and generous empty magenta margins of at least 24 pixels. All twelve fully visible, no cropped parts, no touching or overlap across cells. No connecting terrain. Isolated clean shapes. Very short contact shadows only within each object's cell.\nLighting: consistent cool soft light from upper left with warm self-lit windows and beacon.\nText: no words, labels, numbers, lettering, logos, watermarks, or grid lines.\nConstraints: exactly one pose of each prop, twelve objects total, no animation frames, no characters, no decorative surroundings, no magenta in the objects, fully flat pure magenta background with no texture, no gradient.",
+      "editPrompt": "Use case: background-extraction\nEdit target: the supplied 12-prop isometric atlas. Preserve all twelve original objects exactly: their geometry, painted details, positions, sizes, and 4-column by 3-row arrangement.\nPrimary request: REPLACE THE ENTIRE BACKGROUND WITH ONE FLAT SOLID UNIFORM BRIGHT MAGENTA COLOR #FF00FF. Everything that is not part of the actual twelve foreground props must become the exact same flat magenta background, including the open hole inside the ruin arch and open gaps within the watchtower. Remove all background gradients, shadows, colored haze, light spill, and colored pools under props.\nThe background should look like a flat hot-pink color-key sprite sheet, absolutely uniform electric pink from corner to corner, not a studio or environment. The magenta should occupy all negative space between objects. All four corner pixels must be magenta. DO NOT shade the magenta. DO NOT add any environment or ground.\nKeep the original illustration of all twelve foreground objects intact. Keep self-lit window and lantern pixels and the beacon fire, but remove ambient glow spreading into the background. No text, grid lines, cropping, extra items, or rearrangement. Output same 1536 x 1024 landscape dimensions."
+    }
+  ]
+}

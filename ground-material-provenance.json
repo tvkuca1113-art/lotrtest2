@@ -1,0 +1,36 @@
+{
+  "project": "THE LAST HEARTH: RINGS OF THE NORTH",
+  "provenance": "Original ground-material artwork generated with built-in image_gen, no external image sources. One generation, visually inspected.",
+  "tool": "image_gen.imagegen",
+  "asset": "last-hearth-ground-material-atlas.png",
+  "actualDimensions": [
+    1254,
+    1254
+  ],
+  "requestedDimensions": [
+    1024,
+    1024
+  ],
+  "grid": {
+    "columns": 2,
+    "rows": 2,
+    "actualCellPixels": [
+      627,
+      627
+    ]
+  },
+  "materials": [
+    [
+      "dark-moss-earth-forest",
+      "dirt-gravel-road"
+    ],
+    [
+      "ancient-stone-paving",
+      "thin-snow-over-earth"
+    ]
+  ],
+  "intendedUse": "Crop four quadrants and resize each to 512x512 for repeating game ground patterns.",
+  "note": "The tool returned 1254x1254 despite the requested 1024x1024. The source is preserved without postprocessing. Seamless repeats were requested in the prompt; exact opposing-edge continuity was not verified.",
+  "prompt": "Use case: stylized-concept\nAsset type: original seamless ground-material texture atlas for a hand-painted northern fantasy action RPG.\nPrimary request: exactly 1024 x 1024 square image containing FOUR DISTINCT FLAT OVERHEAD MATERIAL TEXTURES arranged in a strict 2 x 2 grid of equal 512 x 512 square cells. Each texture fills its entire square edge to edge. Each individual 512px square is designed to repeat seamlessly as a ground pattern. Exact vertical division at x=512 and horizontal division at y=512; hard material changes there, no decorative border and no blending across cells.\nUPPER LEFT: dark northern moss and earth forest floor, muted deep forest green and charcoal soil, subtle scattered fallen conifer needles, organic small mottled paint texture, no bright green.\nUPPER RIGHT: muted brown worn dirt and fine gravel road material, gentle scattered tiny mineral grains and compressed earth, no major rocks, no road stripe, no edges of a road, the entire square is the material.\nLOWER LEFT: ancient worn small stone paving, irregular closely laid low-relief stones, subtle cracks and restrained dark moss in gaps, weathered charcoal and neutral grey-brown stone, understated contrast.\nLOWER RIGHT: thin winter snow over earth, restrained neutral blue-grey and off-white surface with tiny hints of underlying dark soil, subtle mottling, no footprints or tracks, no bright white glare.\nStyle/medium: cohesive painterly hand-painted 2D fantasy game textures, detailed brush grain but understated contrast, earthy northern mood. Designed to support small character sprites laid on top without distraction.\nComposition: perfectly flat orthographic overhead texture scans, no depth perspective, no horizon, no scene, no three-dimensional render, no vignette, no cast shadows, no directional lighting. Uniform detail and brightness from one edge of each individual tile to its opposite edge, suitable for seamless tiling.\nColor palette: muted charcoal #171C1B, deep forest #203B2D, earth brown, weathered slate grey, quiet winter blue-grey #95B6C6. No saturated greens, no bright orange, no magenta.\nConstraints: no characters, trees, buildings, props, large rocks, tufts standing upright, recognizable objects, text, labels, symbols, grid strokes, borders, bevels, decorative frames, or watermarks. Just four flat material swatches of exactly equal size, precisely aligned into one 2x2 atlas.",
+  "originalGeneratedPath": "/workspace/scratch/c4afd3ba77cc/generated_images/exec-ebcf51b2-b26a-4666-b7ea-5c0e7f5f7d21.png"
+}

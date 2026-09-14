@@ -1,0 +1,38 @@
+{
+  "project": "THE LAST HEARTH: RINGS OF THE NORTH",
+  "provenance": "Original artwork generated with built-in image_gen, no external source images. Nine single poses intended for animation effects implemented in-engine.",
+  "tool": "image_gen.imagegen",
+  "asset": "last-hearth-character-atlas-magenta.png",
+  "sourceAsset": "last-hearth-character-atlas-source.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "grid": {
+    "columns": 3,
+    "rows": 3
+  },
+  "characters": [
+    [
+      "traveller",
+      "goblin",
+      "orc"
+    ],
+    [
+      "uruk-hai",
+      "warg",
+      "troll"
+    ],
+    [
+      "spider",
+      "barrow-wight",
+      "nazgul"
+    ]
+  ],
+  "prompt": "Use case: stylized-concept\nAsset type: original hand-painted isometric fantasy character atlas for THE LAST HEARTH: RINGS OF THE NORTH.\nPrimary request: exactly nine full-body standalone characters in a strict invisible 3-column by 3-row grid, one separate character per cell, with wide empty margins. Output 1536 x 1024 landscape. All characters face diagonally down-right. 3/4 isometric view looking down about 30 degrees. One readable neutral or alert standing pose per creature, not animation frames.\nBACKGROUND: Every negative-space pixel around and between the characters MUST BE BRIGHT PURE MAGENTA #FF00FF, like a flat color-key swatch. Absolutely no background texture, gradients, scenery, ground, shadows, light spill, haze, or vignette. All corners bright pure magenta. No magenta in character clothing or bodies. Silhouettes should be crisp cutout boundaries.\nROW 1 left to right: (1) original human traveller with a worn sword and patched dark forest-green cloak, practical leather boots and tunic, no actor likeness; (2) small crooked green goblin with dagger, pointed ears, ragged leather scraps; (3) broad muscular scarred olive-green orc with a large iron hook weapon, rough scavenged armor.\nROW 2 left to right: (1) armoured Uruk-hai, original fantasy illustration design, dark iron armor with shield and sword, no movie or existing game design; (2) grey four-legged warg, snarling wolf-like beast, clearly all four legs and tail visible, no rider; (3) large craggy grey troll carrying a stone club, massive torso and short thick legs.\nROW 3 left to right: (1) giant spider with exactly eight visible distinct legs, dark charcoal body; (2) spectral barrow-wight in ragged robes, clearly a visible human-like pale blue ghost face and upper body, ethereal solid silhouette contained within the cell; (3) black-hooded spectral Nazgûl on foot, original design, dark ragged cloak, empty shadowed hood and long iron sword, no actor likeness or movie costume replication.\nStyle/medium: polished hand-painted 2D fantasy game sprites, painterly textures with clear contour silhouettes, muted northern palette charcoal #171C1B, forest #203B2D, aged gold #C2A264, ember #CE7144, winter #95B6C6. Materials weathered leather, rough iron, threadbare cloth, animal fur, stone-like skin. Cohesive proportions and rendering. Full objects entirely contained in their cells.\nComposition/framing: 3 columns each 512px wide; 3 equal rows; generous minimum 30px clear magenta margins inside each cell. No feet, weapons, spider legs, ears, tails, or cloaks clipped by cell boundaries. Each character complete from head to toe. Characters independent, no touching, no overlap, no ground base.\nLighting: cool soft painted light from upper left on characters only. No cast shadow or background lighting.\nText: none. No letters, names, labels, numbers, grids, borders, logos, watermarks.\nConstraints: exactly nine characters in specified order; original artwork with no external image references; use the flat bright magenta across the entire background; 9 single poses, not an animation sheet.",
+  "backgroundCorrection": "Single built-in imagegen background-only edit replaced the shaded backdrop with bright magenta while preserving all nine figures.",
+  "extractionNote": "Use tolerant magenta colorkey rather than exact RGB equality; avoid strict equal row crops because figure tips approach row boundaries.",
+  "editPrompt": "Use case: background-extraction\nEdit target: the supplied nine-character fantasy sprite atlas. Preserve all nine characters exactly: faces, body geometry, poses, anatomy, clothing, armor, weapons, spider legs, painted detail, sizes, positions, and three-column by three-row arrangement.\nPrimary request: REPLACE THE ENTIRE BACKGROUND WITH ONE FLAT SOLID UNIFORM BRIGHT MAGENTA COLOR #FF00FF. Everything that is not part of an actual character must become the exact same flat magenta, including open gaps between spider legs, arm gaps, sword gaps, holes in clothing, and gaps between the warg's legs. Remove all background gradients, shadows, ground, colored haze, ambient glow, atmosphere, vignettes and light spill.\nThe result must look like a flat hot-pink color-key sprite sheet, absolutely uniform electric pink from corner to corner, not a studio or environment. The magenta must occupy every area of negative space. All four corners must be magenta. DO NOT SHADE THE MAGENTA. DO NOT add any scenery, shadow or ground.\nKeep the original painted rendering of all nine foreground figures intact. Keep blue spectral details contained inside the barrow-wight silhouette, but remove all glow spreading into background. No text, borders, grid lines, cropped feet or weapons, extra figures, or rearrangement. Output same 1536 x 1024 landscape dimensions.",
+  "correctedGeneratedPath": "/workspace/scratch/c4afd3ba77cc/generated_images/exec-b7d80926-1b07-4d32-8c1c-692edd8d0686.png",
+  "originalGeneratedPath": "/workspace/scratch/c4afd3ba77cc/generated_images/exec-f10e48e4-ba33-4d47-adad-9cdcd103f227.png"
+}
