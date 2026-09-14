@@ -1,0 +1,24 @@
+{
+  "name": "the-last-hearth",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 4173",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "balance": "node --import tsx scripts/balance.ts",
+    "qa": "node --import tsx scripts/validate.ts",
+    "standalone": "vite build --config vite.single.config.ts && node scripts/standalone.mjs"
+  },
+  "dependencies": {
+    "phaser": "3.90.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "typescript": "5.7.3",
+    "vite": "6.3.5",
+    "tsx": "4.19.4"
+  }
+}
