@@ -1,0 +1,1914 @@
+{
+  "stageCount": 30,
+  "ringCount": 12,
+  "majorBosses": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30
+  ],
+  "rows": [
+    {
+      "stage": 1,
+      "name": "Ashen Road",
+      "boss": "Gritch, the Toll-Taker",
+      "season": "Spring",
+      "objectives": 1,
+      "phases": 1,
+      "patterns": [
+        "double",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 1,
+      "name": "Ashen Road",
+      "boss": "Gritch, the Toll-Taker",
+      "season": "Summer",
+      "objectives": 1,
+      "phases": 1,
+      "patterns": [
+        "double",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 1,
+      "name": "Ashen Road",
+      "boss": "Gritch, the Toll-Taker",
+      "season": "Autumn",
+      "objectives": 1,
+      "phases": 1,
+      "patterns": [
+        "double",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 1,
+      "name": "Ashen Road",
+      "boss": "Gritch, the Toll-Taker",
+      "season": "Winter",
+      "objectives": 1,
+      "phases": 1,
+      "patterns": [
+        "double",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 2,
+      "name": "Broken Mill",
+      "boss": "Kruk Hookhand",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "hook",
+        "sweep",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 2,
+      "name": "Broken Mill",
+      "boss": "Kruk Hookhand",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "hook",
+        "sweep",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 2,
+      "name": "Broken Mill",
+      "boss": "Kruk Hookhand",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "hook",
+        "sweep",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 2,
+      "name": "Broken Mill",
+      "boss": "Kruk Hookhand",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "hook",
+        "sweep",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 3,
+      "name": "Barrow Crossing",
+      "boss": "The Bell-Wight",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "waves",
+        "leap",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 3,
+      "name": "Barrow Crossing",
+      "boss": "The Bell-Wight",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "waves",
+        "leap",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 3,
+      "name": "Barrow Crossing",
+      "boss": "The Bell-Wight",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "waves",
+        "leap",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 3,
+      "name": "Barrow Crossing",
+      "boss": "The Bell-Wight",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "waves",
+        "leap",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 4,
+      "name": "Wolf Pass",
+      "boss": "Greyfang",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "charge",
+        "leap",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 4,
+      "name": "Wolf Pass",
+      "boss": "Greyfang",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "charge",
+        "leap",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 4,
+      "name": "Wolf Pass",
+      "boss": "Greyfang",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "charge",
+        "leap",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 4,
+      "name": "Wolf Pass",
+      "boss": "Greyfang",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "charge",
+        "leap",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 5,
+      "name": "Rootbound Watch",
+      "boss": "Mogrun, the Siege Troll",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "slam",
+        "charge",
+        "double",
+        "charge",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 5,
+      "name": "Rootbound Watch",
+      "boss": "Mogrun, the Siege Troll",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "slam",
+        "charge",
+        "double",
+        "charge",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 5,
+      "name": "Rootbound Watch",
+      "boss": "Mogrun, the Siege Troll",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "slam",
+        "charge",
+        "double",
+        "charge",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 5,
+      "name": "Rootbound Watch",
+      "boss": "Mogrun, the Siege Troll",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "slam",
+        "charge",
+        "double",
+        "charge",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 6,
+      "name": "Thornwood Trail",
+      "boss": "Ssilka, Broodkeeper",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "web",
+        "leap",
+        "pools"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 6,
+      "name": "Thornwood Trail",
+      "boss": "Ssilka, Broodkeeper",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "web",
+        "leap",
+        "pools"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 6,
+      "name": "Thornwood Trail",
+      "boss": "Ssilka, Broodkeeper",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "web",
+        "leap",
+        "pools"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 6,
+      "name": "Thornwood Trail",
+      "boss": "Ssilka, Broodkeeper",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "web",
+        "leap",
+        "pools"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 7,
+      "name": "Fallen Waystation",
+      "boss": "The Briar Archer",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "lanes",
+        "leap",
+        "lanes",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 7,
+      "name": "Fallen Waystation",
+      "boss": "The Briar Archer",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "lanes",
+        "leap",
+        "lanes",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 7,
+      "name": "Fallen Waystation",
+      "boss": "The Briar Archer",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "lanes",
+        "leap",
+        "lanes",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 7,
+      "name": "Fallen Waystation",
+      "boss": "The Briar Archer",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "lanes",
+        "leap",
+        "lanes",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 8,
+      "name": "Sunken Shrine",
+      "boss": "Norgath of the Mire",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "pools",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 8,
+      "name": "Sunken Shrine",
+      "boss": "Norgath of the Mire",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "pools",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 8,
+      "name": "Sunken Shrine",
+      "boss": "Norgath of the Mire",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "pools",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 8,
+      "name": "Sunken Shrine",
+      "boss": "Norgath of the Mire",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "pools",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 9,
+      "name": "Whispering Grove",
+      "boss": "The Hush-Caller",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "silence",
+        "waves",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 9,
+      "name": "Whispering Grove",
+      "boss": "The Hush-Caller",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "silence",
+        "waves",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 9,
+      "name": "Whispering Grove",
+      "boss": "The Hush-Caller",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "silence",
+        "waves",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 9,
+      "name": "Whispering Grove",
+      "boss": "The Hush-Caller",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "silence",
+        "waves",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 10,
+      "name": "Hollow Crown",
+      "boss": "Queen of the Ashweb",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "web",
+        "leap",
+        "lanes",
+        "web",
+        "pools",
+        "double",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 10,
+      "name": "Hollow Crown",
+      "boss": "Queen of the Ashweb",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "web",
+        "leap",
+        "lanes",
+        "web",
+        "pools",
+        "double",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 10,
+      "name": "Hollow Crown",
+      "boss": "Queen of the Ashweb",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "web",
+        "leap",
+        "lanes",
+        "web",
+        "pools",
+        "double",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 10,
+      "name": "Hollow Crown",
+      "boss": "Queen of the Ashweb",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "web",
+        "leap",
+        "lanes",
+        "web",
+        "pools",
+        "double",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 11,
+      "name": "Old Quarry",
+      "boss": "Rockjaw",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sweep",
+        "slam",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 11,
+      "name": "Old Quarry",
+      "boss": "Rockjaw",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sweep",
+        "slam",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 11,
+      "name": "Old Quarry",
+      "boss": "Rockjaw",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sweep",
+        "slam",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 11,
+      "name": "Old Quarry",
+      "boss": "Rockjaw",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sweep",
+        "slam",
+        "sweep",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 12,
+      "name": "Furnace Tunnels",
+      "boss": "Bragg, Furnace Master",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "mines",
+        "breath",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 12,
+      "name": "Furnace Tunnels",
+      "boss": "Bragg, Furnace Master",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "mines",
+        "breath",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 12,
+      "name": "Furnace Tunnels",
+      "boss": "Bragg, Furnace Master",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "mines",
+        "breath",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 12,
+      "name": "Furnace Tunnels",
+      "boss": "Bragg, Furnace Master",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "mines",
+        "breath",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 13,
+      "name": "Icebridge",
+      "boss": "Whitefang",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "leap",
+        "charge",
+        "leap",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 13,
+      "name": "Icebridge",
+      "boss": "Whitefang",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "leap",
+        "charge",
+        "leap",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 13,
+      "name": "Icebridge",
+      "boss": "Whitefang",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "leap",
+        "charge",
+        "leap",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 13,
+      "name": "Icebridge",
+      "boss": "Whitefang",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "leap",
+        "charge",
+        "leap",
+        "shock"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 14,
+      "name": "Hall of Anvils",
+      "boss": "The Iron Echo",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "echo",
+        "double",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 14,
+      "name": "Hall of Anvils",
+      "boss": "The Iron Echo",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "echo",
+        "double",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 14,
+      "name": "Hall of Anvils",
+      "boss": "The Iron Echo",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "echo",
+        "double",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 14,
+      "name": "Hall of Anvils",
+      "boss": "The Iron Echo",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "echo",
+        "double",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 15,
+      "name": "The Chained Deep",
+      "boss": "Durnok the Chained",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "chain",
+        "slam",
+        "chain",
+        "shock",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 15,
+      "name": "The Chained Deep",
+      "boss": "Durnok the Chained",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "chain",
+        "slam",
+        "chain",
+        "shock",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 15,
+      "name": "The Chained Deep",
+      "boss": "Durnok the Chained",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "chain",
+        "slam",
+        "chain",
+        "shock",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 15,
+      "name": "The Chained Deep",
+      "boss": "Durnok the Chained",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "chain",
+        "slam",
+        "chain",
+        "shock",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 16,
+      "name": "Flooded Ford",
+      "boss": "Karg Shieldmarshal",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shield",
+        "charge",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 16,
+      "name": "Flooded Ford",
+      "boss": "Karg Shieldmarshal",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shield",
+        "charge",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 16,
+      "name": "Flooded Ford",
+      "boss": "Karg Shieldmarshal",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shield",
+        "charge",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 16,
+      "name": "Flooded Ford",
+      "boss": "Karg Shieldmarshal",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shield",
+        "charge",
+        "sweep"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 17,
+      "name": "Siegeworks",
+      "boss": "Uzg the Engineer",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ballista",
+        "mines",
+        "lanes"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 17,
+      "name": "Siegeworks",
+      "boss": "Uzg the Engineer",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ballista",
+        "mines",
+        "lanes"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 17,
+      "name": "Siegeworks",
+      "boss": "Uzg the Engineer",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ballista",
+        "mines",
+        "lanes"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 17,
+      "name": "Siegeworks",
+      "boss": "Uzg the Engineer",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ballista",
+        "mines",
+        "lanes"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 18,
+      "name": "Bannerfield",
+      "boss": "The War-Drummer",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "banners",
+        "waves",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 18,
+      "name": "Bannerfield",
+      "boss": "The War-Drummer",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "banners",
+        "waves",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 18,
+      "name": "Bannerfield",
+      "boss": "The War-Drummer",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "banners",
+        "waves",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 18,
+      "name": "Bannerfield",
+      "boss": "The War-Drummer",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "banners",
+        "waves",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 19,
+      "name": "Ember Watch",
+      "boss": "The Cinder Knight",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "counter",
+        "sweep",
+        "breath"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 19,
+      "name": "Ember Watch",
+      "boss": "The Cinder Knight",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "counter",
+        "sweep",
+        "breath"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 19,
+      "name": "Ember Watch",
+      "boss": "The Cinder Knight",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "counter",
+        "sweep",
+        "breath"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 19,
+      "name": "Ember Watch",
+      "boss": "The Cinder Knight",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "counter",
+        "sweep",
+        "breath"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 20,
+      "name": "Red Banner Keep",
+      "boss": "Varzug, Banner-Lord",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "shield",
+        "ballista",
+        "sectors",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 20,
+      "name": "Red Banner Keep",
+      "boss": "Varzug, Banner-Lord",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "shield",
+        "ballista",
+        "sectors",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 20,
+      "name": "Red Banner Keep",
+      "boss": "Varzug, Banner-Lord",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "shield",
+        "ballista",
+        "sectors",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 20,
+      "name": "Red Banner Keep",
+      "boss": "Varzug, Banner-Lord",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "shield",
+        "ballista",
+        "sectors",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 21,
+      "name": "Mirror Barrows",
+      "boss": "The Glass Wight",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shadow",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 21,
+      "name": "Mirror Barrows",
+      "boss": "The Glass Wight",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shadow",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 21,
+      "name": "Mirror Barrows",
+      "boss": "The Glass Wight",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shadow",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 21,
+      "name": "Mirror Barrows",
+      "boss": "The Glass Wight",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shadow",
+        "echo",
+        "waves"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 22,
+      "name": "Obsidian Passage",
+      "boss": "The Rift Keeper",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "fissures",
+        "charge",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 22,
+      "name": "Obsidian Passage",
+      "boss": "The Rift Keeper",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "fissures",
+        "charge",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 22,
+      "name": "Obsidian Passage",
+      "boss": "The Rift Keeper",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "fissures",
+        "charge",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 22,
+      "name": "Obsidian Passage",
+      "boss": "The Rift Keeper",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "fissures",
+        "charge",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 23,
+      "name": "Winter Tower",
+      "boss": "Keeper of the Pale Flame",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sectors",
+        "waves",
+        "silence"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 23,
+      "name": "Winter Tower",
+      "boss": "Keeper of the Pale Flame",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sectors",
+        "waves",
+        "silence"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 23,
+      "name": "Winter Tower",
+      "boss": "Keeper of the Pale Flame",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sectors",
+        "waves",
+        "silence"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 23,
+      "name": "Winter Tower",
+      "boss": "Keeper of the Pale Flame",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "sectors",
+        "waves",
+        "silence"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 24,
+      "name": "Fallen Courtyard",
+      "boss": "The Oathbreaker Giant",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shock",
+        "slam",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 24,
+      "name": "Fallen Courtyard",
+      "boss": "The Oathbreaker Giant",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shock",
+        "slam",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 24,
+      "name": "Fallen Courtyard",
+      "boss": "The Oathbreaker Giant",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shock",
+        "slam",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 24,
+      "name": "Fallen Courtyard",
+      "boss": "The Oathbreaker Giant",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "shock",
+        "slam",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 25,
+      "name": "Black Causeway",
+      "boss": "The Nameless Nazgûl",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "charge",
+        "lanes",
+        "waves",
+        "shadow",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 25,
+      "name": "Black Causeway",
+      "boss": "The Nameless Nazgûl",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "charge",
+        "lanes",
+        "waves",
+        "shadow",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 25,
+      "name": "Black Causeway",
+      "boss": "The Nameless Nazgûl",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "charge",
+        "lanes",
+        "waves",
+        "shadow",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 25,
+      "name": "Black Causeway",
+      "boss": "The Nameless Nazgûl",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 2,
+      "patterns": [
+        "charge",
+        "lanes",
+        "waves",
+        "shadow",
+        "sectors"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 26,
+      "name": "Siege Trench",
+      "boss": "Master Sapper Gruk",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "explosives",
+        "mines",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 26,
+      "name": "Siege Trench",
+      "boss": "Master Sapper Gruk",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "explosives",
+        "mines",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 26,
+      "name": "Siege Trench",
+      "boss": "Master Sapper Gruk",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "explosives",
+        "mines",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 26,
+      "name": "Siege Trench",
+      "boss": "Master Sapper Gruk",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "explosives",
+        "mines",
+        "leap"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 27,
+      "name": "Smouldering Forge",
+      "boss": "Cindermaw",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "breath",
+        "pools",
+        "slam"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 27,
+      "name": "Smouldering Forge",
+      "boss": "Cindermaw",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "breath",
+        "pools",
+        "slam"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 27,
+      "name": "Smouldering Forge",
+      "boss": "Cindermaw",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "breath",
+        "pools",
+        "slam"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 27,
+      "name": "Smouldering Forge",
+      "boss": "Cindermaw",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "breath",
+        "pools",
+        "slam"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 28,
+      "name": "Broken Citadel",
+      "boss": "The Black Castellan",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "stances",
+        "shield",
+        "lanes",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 28,
+      "name": "Broken Citadel",
+      "boss": "The Black Castellan",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "stances",
+        "shield",
+        "lanes",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 28,
+      "name": "Broken Citadel",
+      "boss": "The Black Castellan",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "stances",
+        "shield",
+        "lanes",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 28,
+      "name": "Broken Citadel",
+      "boss": "The Black Castellan",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "stances",
+        "shield",
+        "lanes",
+        "double"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 29,
+      "name": "Last Beacon",
+      "boss": "The Oath-Thief",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ringcopy",
+        "echo",
+        "sectors",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 29,
+      "name": "Last Beacon",
+      "boss": "The Oath-Thief",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ringcopy",
+        "echo",
+        "sectors",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 29,
+      "name": "Last Beacon",
+      "boss": "The Oath-Thief",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ringcopy",
+        "echo",
+        "sectors",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 29,
+      "name": "Last Beacon",
+      "boss": "The Oath-Thief",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 1,
+      "patterns": [
+        "ringcopy",
+        "echo",
+        "sectors",
+        "charge"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 30,
+      "name": "Eclipse Summit",
+      "boss": "The Ashen Regent",
+      "season": "Spring",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "seasons",
+        "waves",
+        "breath",
+        "conduit",
+        "sectors",
+        "echo"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 30,
+      "name": "Eclipse Summit",
+      "boss": "The Ashen Regent",
+      "season": "Summer",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "seasons",
+        "waves",
+        "breath",
+        "conduit",
+        "sectors",
+        "echo"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 30,
+      "name": "Eclipse Summit",
+      "boss": "The Ashen Regent",
+      "season": "Autumn",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "seasons",
+        "waves",
+        "breath",
+        "conduit",
+        "sectors",
+        "echo"
+      ],
+      "reachable": true,
+      "exit": true
+    },
+    {
+      "stage": 30,
+      "name": "Eclipse Summit",
+      "boss": "The Ashen Regent",
+      "season": "Winter",
+      "objectives": 4,
+      "phases": 3,
+      "patterns": [
+        "double",
+        "counter",
+        "charge",
+        "seasons",
+        "waves",
+        "breath",
+        "conduit",
+        "sectors",
+        "echo"
+      ],
+      "reachable": true,
+      "exit": true
+    }
+  ]
+}

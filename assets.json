@@ -1,0 +1,108 @@
+{
+  "assets": {
+    "public/assets/audio/ambience.wav": {
+      "bytes": 705644,
+      "sha256": "c547cca3328911170b0bfdf715395203280a66c5be0f239d19b88372e494755f"
+    },
+    "public/assets/audio/boss.wav": {
+      "bytes": 48554,
+      "sha256": "c8dcbe6108e195dcf3a85bef46cc0a68d08c9a318cdf125cd821feff01d762bf"
+    },
+    "public/assets/audio/bow.wav": {
+      "bytes": 7540,
+      "sha256": "e7366203bc3f3252d5156ca765c6fffee50c845c90b8993192fe012495d7cd72"
+    },
+    "public/assets/audio/break.wav": {
+      "bytes": 13274,
+      "sha256": "bf9a69e0623952424026101adbb51c4ebc48bdb17578bb213dc88a0c543b53e5"
+    },
+    "public/assets/audio/coin.wav": {
+      "bytes": 5336,
+      "sha256": "0c5c94132f79f94587ba2a53a8fa46b8b2e6c0eb99d89d48849f422217452235"
+    },
+    "public/assets/audio/cue.wav": {
+      "bytes": 13274,
+      "sha256": "d71f42b1ef331ece6affd4e12438606d2b6b007c76127bb0d7708a9cbd683896"
+    },
+    "public/assets/audio/dodge.wav": {
+      "bytes": 10186,
+      "sha256": "df3e5f5bc007659e25f69085548acbacc5e64113094076c9d3f27417a8119b6b"
+    },
+    "public/assets/audio/heal.wav": {
+      "bytes": 26504,
+      "sha256": "6de0d17448852347e6d0d52f1a823b73406cca09efd2070dacb342df10dc8398"
+    },
+    "public/assets/audio/hurt.wav": {
+      "bytes": 7982,
+      "sha256": "f2c1a4b876bce36ac3e1424c5a6e80924bb3ff6e0732b99ccfb6fe30b87ed00a"
+    },
+    "public/assets/audio/impact.wav": {
+      "bytes": 6218,
+      "sha256": "5890e09025ebd1f8e19d545e4f42719da671f869ad24148fe89eeb340df6a666"
+    },
+    "public/assets/audio/loot.wav": {
+      "bytes": 15478,
+      "sha256": "2197fae33a0275febe4318bb93b18617cd23e4293835dead19f9daa793423ea9"
+    },
+    "public/assets/audio/music.wav": {
+      "bytes": 705644,
+      "sha256": "fceb8a1e32563d697c2668f31ddd0275ffccb933d652a699a4cc68edd4f3853b"
+    },
+    "public/assets/audio/parry.wav": {
+      "bytes": 9746,
+      "sha256": "b7c2cf7ed8555cb5b9e682ff82f713c7b4d4be10cdf179b9d9c21d2a6eec2e65"
+    },
+    "public/assets/audio/ring.wav": {
+      "bytes": 28708,
+      "sha256": "cec653010dfb251046281c6d114f6240001d8f7a5579c42ceb8f15f8673696c7"
+    },
+    "public/assets/audio/step.wav": {
+      "bytes": 4012,
+      "sha256": "2d1f415c9ab2e4c1e44ab69aad74941f6b5c4f9b00ea6d8f2e2388c1eea6bc78"
+    },
+    "public/assets/audio/swing.wav": {
+      "bytes": 7982,
+      "sha256": "24c0520a196b8ee0ebd3ecd311bb19499e6fee3ea38653276985503a3489160d"
+    },
+    "public/assets/audio/victory.wav": {
+      "bytes": 79424,
+      "sha256": "c613abd526e43cda78d60308fab3d648c536efa8ab5e05521c7ffe0cbd0faee6"
+    },
+    "public/assets/ground-earth.webp": {
+      "bytes": 93010,
+      "sha256": "3a93174083c3261de58e570113ef6275666046d8faab76e2c6916520cc4f9711"
+    },
+    "public/assets/ground-forest.webp": {
+      "bytes": 84338,
+      "sha256": "5dca166c02b08d5cec1f49508fd47508050ebf7e7c0f474c9c26b4eed1cbdac7"
+    },
+    "public/assets/ground-snow.webp": {
+      "bytes": 88424,
+      "sha256": "b6c4a47b377dca6e92543d9eed1315670ad11df35749eaaf6856ca6d4b87dcbc"
+    },
+    "public/assets/ground-stone.webp": {
+      "bytes": 81892,
+      "sha256": "199bbce5fa9e1dd92bbbe78282804d56b48e989aa3ac6adeef9b348714d9bf27"
+    },
+    "public/assets/title.webp": {
+      "bytes": 298522,
+      "sha256": "1501941fc1e062cfd63d46b66cf1541ce80045b71fbce95c9189bd13099cd701"
+    },
+    "public/assets/world-atlas.json": {
+      "bytes": 4164,
+      "sha256": "55cfed54fdb10fa3be501926907f13affa7b78d26be3bb70ab42e186b8957ef8"
+    },
+    "public/assets/world-atlas.png": {
+      "bytes": 1810551,
+      "sha256": "f2be3258e8a3eb9faa9a819c496c6bcd6d6789fc67a4a6465e79559bddb7eeb9"
+    }
+  },
+  "checks": {
+    "noExternalScriptTags": true,
+    "noExternalStylesheets": true,
+    "noDevelopmentFixturesInDist": true,
+    "standaloneBytes": 8029744,
+    "embeddedAudioCount": 17,
+    "embeddedAssetCount": 24
+  }
+}

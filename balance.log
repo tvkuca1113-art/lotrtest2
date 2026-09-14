@@ -1,0 +1,78 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> the-last-hearth@0.1.0 balance
+> node --import tsx scripts/balance.ts
+
+{
+  "deficits": [],
+  "stage5": {
+    "stage": 5,
+    "level": 6,
+    "tier": "Wooden cottage",
+    "gold": 578,
+    "wood": 108,
+    "stone": 67,
+    "iron": 30,
+    "shards": 51,
+    "rings": 3,
+    "rankCap": 2,
+    "lowestRank": 2,
+    "equipment": "1/1/1"
+  },
+  "stage10": {
+    "stage": 10,
+    "level": 11,
+    "tier": "Stone house",
+    "gold": 1129,
+    "wood": 268,
+    "stone": 162,
+    "iron": 77,
+    "shards": 98,
+    "rings": 6,
+    "rankCap": 4,
+    "lowestRank": 4,
+    "equipment": "3/3/3"
+  },
+  "stage20": {
+    "stage": 20,
+    "level": 21,
+    "tier": "Fortified courtyard",
+    "gold": 3077,
+    "wood": 813,
+    "stone": 612,
+    "iron": 236,
+    "shards": 210,
+    "rings": 10,
+    "rankCap": 7,
+    "lowestRank": 7,
+    "equipment": "6/6/6"
+  },
+  "stage25": {
+    "stage": 25,
+    "level": 26,
+    "tier": "Small castle",
+    "gold": 41,
+    "wood": 1038,
+    "stone": 647,
+    "iron": 238,
+    "shards": 176,
+    "rings": 12,
+    "rankCap": 9,
+    "lowestRank": 9,
+    "equipment": "8/8/8"
+  },
+  "stage30": {
+    "stage": 30,
+    "level": 30,
+    "tier": "Small castle",
+    "gold": 3592,
+    "wood": 1588,
+    "stone": 1232,
+    "iron": 418,
+    "shards": 354,
+    "rings": 12,
+    "rankCap": 10,
+    "lowestRank": 10,
+    "equipment": "10/10/10"
+  }
+}

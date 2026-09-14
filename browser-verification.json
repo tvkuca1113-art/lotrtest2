@@ -1,0 +1,101 @@
+{
+  "date": "2026-09-14",
+  "status": "playable-v0.1-candidate",
+  "automatedTests": {
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0
+  },
+  "campaignStages": 30,
+  "rings": 12,
+  "stageSeasonReachability": {
+    "tested": 120,
+    "passed": 120
+  },
+  "browser": {
+    "engine": "Chrome 151",
+    "viewport": [
+      1363,
+      936
+    ],
+    "renderer": "Phaser Canvas fallback",
+    "physicalDevice": false,
+    "standaloneOverHttp": "title, continue, home, inventory passed",
+    "distOverHttp": "title and continue passed",
+    "applicationErrorsFinalSmoke": 0
+  },
+  "performance": {
+    "scene": "home",
+    "durationSeconds": 5,
+    "metric": "Phaser actualFps",
+    "samples": [
+      46.4,
+      48.1,
+      41.8,
+      41.8,
+      45.1
+    ],
+    "mean": 44.6,
+    "cpuUpdateLastSampleMs": 0.1,
+    "hardware": "unknown remote browser",
+    "target60Met": false
+  },
+  "touch": {
+    "viewport": [
+      390,
+      844
+    ],
+    "method": "iframe with synthetic simultaneous PointerEvents",
+    "holdSeconds": 1.5,
+    "movementWorldUnits": 154.1,
+    "strikes": 4,
+    "released": true,
+    "physicalPhoneTested": false,
+    "instantaneousFps": 55.3
+  },
+  "saves": {
+    "actualIndexedDbRoundtrip": "PASS",
+    "level": 30,
+    "ringCount": 12,
+    "buildings": 1,
+    "backup": true
+  },
+  "buildingRelocation": {
+    "from": [
+      5,
+      12
+    ],
+    "to": [
+      14,
+      17
+    ],
+    "tier": 5
+  },
+  "imageExport": {
+    "previewRendered": true,
+    "width": 1363,
+    "height": 936,
+    "browserDownloadConfirmed": false
+  },
+  "endings": {
+    "valley": "fixture-assisted UI pass",
+    "hearth": "fixture-assisted UI pass"
+  },
+  "humanPlay": {
+    "sampledStages": [
+      1,
+      5,
+      15,
+      25,
+      30
+    ],
+    "fullCampaignCompleted": false,
+    "fullManualBossVictoriesConfirmed": false,
+    "targetDurationHours": [
+      4,
+      6
+    ],
+    "targetDurationValidated": false
+  },
+  "notes": "See VERIFICATION.md for scope, fixture assistance, fixes and remaining acceptance gaps."
+}

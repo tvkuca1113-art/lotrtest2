@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> the-last-hearth@0.1.0 qa
+> node --import tsx scripts/validate.ts
+
+Validated 120 stage-season combinations; 0 unreachable critical paths.

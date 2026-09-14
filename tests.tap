@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: Thirty distinct stages, six major bosses, twelve unique rings and all required families
+ok 1 - Thirty distinct stages, six major bosses, twelve unique rings and all required families
+  ---
+  duration_ms: 1.234178
+  type: 'test'
+  ...
+# Subtest: Main objective and boss XP hit specified milestones and hard cap
+ok 2 - Main objective and boss XP hit specified milestones and hard cap
+  ---
+  duration_ms: 2.040718
+  type: 'test'
+  ...
+# Subtest: Ring rank ceiling, scaling, deterministic upgrades and duplicate conversion
+ok 3 - Ring rank ceiling, scaling, deterministic upgrades and duplicate conversion
+  ---
+  duration_ms: 0.618431
+  type: 'test'
+  ...
+# Subtest: One ring cannot be worn or installed in two places; sockets and slots unlock correctly
+ok 4 - One ring cannot be worn or installed in two places; sockets and slots unlock correctly
+  ---
+  duration_ms: 0.467374
+  type: 'test'
+  ...
+# Subtest: Six synergies require both active slots, respect cooldowns and reject recursive sources
+ok 5 - Six synergies require both active slots, respect cooldowns and reject recursive sources
+  ---
+  duration_ms: 0.509426
+  type: 'test'
+  ...
+# Subtest: Transactions reject negative costs, double purchase and repeated construction refunds
+ok 6 - Transactions reject negative costs, double purchase and repeated construction refunds
+  ---
+  duration_ms: 1.719358
+  type: 'test'
+  ...
+# Subtest: Building preview protects paths, collisions and moves; upgrade recipe is not cumulative
+ok 7 - Building preview protects paths, collisions and moves; upgrade recipe is not cumulative
+  ---
+  duration_ms: 5.168984
+  type: 'test'
+  ...
+# Subtest: First clear reward and day change are one-time, while new replays use reduced rewards
+ok 8 - First clear reward and day change are one-time, while new replays use reduced rewards
+  ---
+  duration_ms: 1.087858
+  type: 'test'
+  ...
+# Subtest: Four-day seasons and modest seasonal damage
+ok 9 - Four-day seasons and modest seasonal damage
+  ---
+  duration_ms: 0.292097
+  type: 'test'
+  ...
+# Subtest: Every objective, checkpoint, arena and exit reachable across all 120 stage/season combinations
+ok 10 - Every objective, checkpoint, arena and exit reachable across all 120 stage/season combinations
+  ---
+  duration_ms: 215.367345
+  type: 'test'
+  ...
+# Subtest: Projection inverse, wall obstruction and collision prevent tunnelling
+ok 11 - Projection inverse, wall obstruction and collision prevent tunnelling
+  ---
+  duration_ms: 2.069011
+  type: 'test'
+  ...
+# Subtest: Damage guards, dodge invulnerability and time based cooldowns
+ok 12 - Damage guards, dodge invulnerability and time based cooldowns
+  ---
+  duration_ms: 2.78761
+  type: 'test'
+  ...
+# Subtest: Expanded ring hazards have an explicit safe gap
+ok 13 - Expanded ring hazards have an explicit safe gap
+  ---
+  duration_ms: 0.360176
+  type: 'test'
+  ...
+# Subtest: Full inventory preserves loot in overflow; equipped and locked items survive bulk salvage
+ok 14 - Full inventory preserves loot in overflow; equipped and locked items survive bulk salvage
+  ---
+  duration_ms: 0.416274
+  type: 'test'
+  ...
+# Subtest: Save migration and import reject corrupt IDs, resources, duplicate slots, refund exploits and versions
+ok 15 - Save migration and import reject corrupt IDs, resources, duplicate slots, refund exploits and versions
+  ---
+  duration_ms: 1.438647
+  type: 'test'
+  ...
+# Subtest: All thirty boss fixtures initialise complete patterns, checkpoints, phases and one-time exits
+ok 16 - All thirty boss fixtures initialise complete patterns, checkpoints, phases and one-time exits
+  ---
+  duration_ms: 13.242394
+  type: 'test'
+  ...
+# Subtest: Each ring has an actual effect in the engine, both sockets remove the wearable assignment
+ok 17 - Each ring has an actual effect in the engine, both sockets remove the wearable assignment
+  ---
+  duration_ms: 5.105494
+  type: 'test'
+  ...
+# Subtest: Thirty talent nodes have distinct rules; prerequisites and the 29-point budget hold
+ok 18 - Thirty talent nodes have distinct rules; prerequisites and the 29-point budget hold
+  ---
+  duration_ms: 0.307813
+  type: 'test'
+  ...
+# Subtest: Dismantling a castle refunds every paid upgrade once and never shrinks unlocked land
+ok 19 - Dismantling a castle refunds every paid upgrade once and never shrinks unlocked land
+  ---
+  duration_ms: 28.6531
+  type: 'test'
+  ...
+# Subtest: Windstep target cap applies across the whole cast, with a rank-seven evolution
+ok 20 - Windstep target cap applies across the whole cast, with a rank-seven evolution
+  ---
+  duration_ms: 3.180317
+  type: 'test'
+  ...
+# Subtest: Support effects use the advertised smaller burn and slow budgets
+ok 21 - Support effects use the advertised smaller burn and slow budgets
+  ---
+  duration_ms: 1.104479
+  type: 'test'
+  ...
+# Subtest: Optional winter crossing and dark ward have actual mechanical changes
+ok 22 - Optional winter crossing and dark ward have actual mechanical changes
+  ---
+  duration_ms: 1.599022
+  type: 'test'
+  ...
+# Subtest: Bow can break anchors and the final conduit phase requires their destruction
+ok 23 - Bow can break anchors and the final conduit phase requires their destruction
+  ---
+  duration_ms: 2.374385
+  type: 'test'
+  ...
+# Subtest: Import rejects blocked building layouts, malformed checkpoints and missing control fields
+ok 24 - Import rejects blocked building layouts, malformed checkpoints and missing control fields
+  ---
+  duration_ms: 0.883543
+  type: 'test'
+  ...
+# Subtest: Boss checkpoint reload and retry keep exploration loot and cannot duplicate the first reward
+ok 25 - Boss checkpoint reload and retry keep exploration loot and cannot duplicate the first reward
+  ---
+  duration_ms: 1.823106
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 617.812314

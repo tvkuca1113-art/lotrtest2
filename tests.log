@@ -1,0 +1,33 @@
+✔ Thirty distinct stages, six major bosses, twelve unique rings and all required families (1.234178ms)
+✔ Main objective and boss XP hit specified milestones and hard cap (2.040718ms)
+✔ Ring rank ceiling, scaling, deterministic upgrades and duplicate conversion (0.618431ms)
+✔ One ring cannot be worn or installed in two places; sockets and slots unlock correctly (0.467374ms)
+✔ Six synergies require both active slots, respect cooldowns and reject recursive sources (0.509426ms)
+✔ Transactions reject negative costs, double purchase and repeated construction refunds (1.719358ms)
+✔ Building preview protects paths, collisions and moves; upgrade recipe is not cumulative (5.168984ms)
+✔ First clear reward and day change are one-time, while new replays use reduced rewards (1.087858ms)
+✔ Four-day seasons and modest seasonal damage (0.292097ms)
+✔ Every objective, checkpoint, arena and exit reachable across all 120 stage/season combinations (215.367345ms)
+✔ Projection inverse, wall obstruction and collision prevent tunnelling (2.069011ms)
+✔ Damage guards, dodge invulnerability and time based cooldowns (2.78761ms)
+✔ Expanded ring hazards have an explicit safe gap (0.360176ms)
+✔ Full inventory preserves loot in overflow; equipped and locked items survive bulk salvage (0.416274ms)
+✔ Save migration and import reject corrupt IDs, resources, duplicate slots, refund exploits and versions (1.438647ms)
+✔ All thirty boss fixtures initialise complete patterns, checkpoints, phases and one-time exits (13.242394ms)
+✔ Each ring has an actual effect in the engine, both sockets remove the wearable assignment (5.105494ms)
+✔ Thirty talent nodes have distinct rules; prerequisites and the 29-point budget hold (0.307813ms)
+✔ Dismantling a castle refunds every paid upgrade once and never shrinks unlocked land (28.6531ms)
+✔ Windstep target cap applies across the whole cast, with a rank-seven evolution (3.180317ms)
+✔ Support effects use the advertised smaller burn and slow budgets (1.104479ms)
+✔ Optional winter crossing and dark ward have actual mechanical changes (1.599022ms)
+✔ Bow can break anchors and the final conduit phase requires their destruction (2.374385ms)
+✔ Import rejects blocked building layouts, malformed checkpoints and missing control fields (0.883543ms)
+✔ Boss checkpoint reload and retry keep exploration loot and cannot duplicate the first reward (1.823106ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 617.812314
