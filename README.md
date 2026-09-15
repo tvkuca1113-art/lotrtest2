@@ -1,12 +1,14 @@
 # THE LAST HEARTH: RINGS OF THE NORTH
 
-Igriva verzija 0.1 za jednog igrača. TypeScript, Phaser 3.90.0 i Vite; sve slike i zvukovi su lokalni. Tekst u igri je na engleskom. Ovo je neslužbena, nekanonska fan-priča smještena u Međuzemlje, s izvornim putnikom, dolinom, manjim prstenovima i Ashen Regentom.
+Igriva verzija 0.2 za jednog igrača. TypeScript, Phaser 3.90.0 i Vite; sve slike i zvukovi su lokalni. Tekst u igri je na engleskom. Ovo je neslužbena, nekanonska fan-priča smještena u Međuzemlje, s izvornim putnikom, dolinom, manjim prstenovima i Ashen Regentom.
 
 **Isporuka sadrži svih 30 kampanjskih etapa, a ne samo prvi odsječak.** Ovo je kandidat za prvo izdanje: automatizovana provjera sadržaja i sistema je završena, ali cjelovito ljudsko testiranje kampanje, ciljano trajanje 4–6 sati i rad na fizičkim telefonima nisu potvrđeni. Detaljne granice i stvarni rezultati su u `VERIFICATION.md`.
 
-## Pokretanje bez instalacije
+## Update 0.2 — Living Valley
 
-Otvorite `release/The-Last-Hearth.html` u savremenom desktop pregledniku. Ovaj fajl sadrži igru i sva 24 runtime resursa. Nisu potrebni račun, API ključ, veza s AI servisom ili plaćena usluga. Ako preglednik ograničava snimanje za lokalne HTML fajlove, igra nastavlja u memoriji i nudi izvoz. Za redovno igranje, naročito na telefonu, poslužite `dist/` putem HTTP/HTTPS-a.
+Nove animirane poze borbe, bogatija priroda i rijeke, postepeno otkrivanje lika iza krošnje, prolog i povezani prizori priče do oba završetka. Pregled promjena i istraživanja je u `UPDATE-v0.2.md`, a rezultati ove iteracije u `VERIFICATION-v0.2.md`.
+
+Za Vercel koristite izvorni projekat: `npm ci`, zatim `npm run build`, izlaz `dist`. Ranije uploadovani `The-Last-Hearth.html` u korijenu repozitorija pripada verziji 0.1. Novo samostalno izdanje pravite komandom `npm run standalone`; izlaz je `release/The-Last-Hearth.html` sa svim lokalnim resursima. Za redovno igranje preporučen je HTTP/HTTPS i produkcijski direktorij `dist/`.
 
 ## Izvorni projekat
 
@@ -50,7 +52,7 @@ Igra ne preuzima runtime resurse s tuđih domena. Instalacija razvojnih zavisnos
 - Pet resursa, deterministička nadogradnja, trgovina, poređenje i zaključavanje opreme, sortiranje, rastavljanje i rezervni prostor za višak plijena.
 - Dva završetka, teži povratci u postojeće etape, izazovi bossova, niz šest velikih bossova s checkpointima, lokalni lični rekordi, boje ogrtača i dobrovoljna odbrana naselja u tri talasa.
 
-Pogledajte `docs/CAMPAIGN.md` za pregled svih etapa i `docs/RINGS.md` za tačne opise kolekcije.
+Pogledajte `CAMPAIGN.md` za pregled svih etapa i `RINGS.md` za tačne opise kolekcije.
 
 ## Kontrole
 

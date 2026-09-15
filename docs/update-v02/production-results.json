@@ -1,0 +1,18 @@
+[
+  {
+    "url": "dist HTTP preview",
+    "prologue": "You had only meant to pass through.",
+    "noFixtures": true,
+    "errors": [],
+    "missing": [],
+    "canvas": 1
+  },
+  {
+    "url": "standalone file",
+    "prologue": "You had only meant to pass through.",
+    "noFixtures": true,
+    "errors": [],
+    "missing": [],
+    "canvas": 1
+  }
+]

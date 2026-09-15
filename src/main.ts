@@ -1,3 +1,4 @@
+import {chooseRenderer} from './game/renderer';
 import { message } from './content/messages';
 import Phaser from 'phaser';
 import './style.css';
@@ -17,9 +18,9 @@ const audio = new HearthAudio(() => engine?.save.settings ?? defaultSettings());
 let ui: Interface;
 const controls = new Controls(() => engine, (x, y) => scene.aimAt(x, y), p => ui?.placeAt(p) ?? false);
 ui = new Interface(scene, controls, audio, store);
-const game = new Phaser.Game({ type: Phaser.AUTO, parent: 'game', backgroundColor: '#171c1b', width: window.innerWidth, height: window.innerHeight, scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH }, render: { antialias: true, roundPixels: false, preserveDrawingBuffer: true }, fps: { target: 60, forceSetTimeOut: true }, audio: { noAudio: true }, scene: [scene] });
+const game = new Phaser.Game({ type: chooseRenderer(), parent: 'game', backgroundColor: '#171c1b', width: window.innerWidth, height: window.innerHeight, scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH }, render: { antialias: true, roundPixels: false, preserveDrawingBuffer: true }, fps: { target: 60, forceSetTimeOut: false }, audio: { noAudio: true }, scene: [scene] });
 async function start(save: Save) { if (engine)
-    engine.events = []; engine = new Engine(save, store); ui.bindEngine(engine); scene.bind(engine); engine.start(); document.getElementById('game')!.classList.add('active'); if (import.meta.env.DEV) {
+    engine.events = []; engine = new Engine(save, store); engine.presentationEnabled = true; ui.bindEngine(engine); scene.bind(engine); engine.start(); document.getElementById('game')!.classList.add('active'); if (import.meta.env.DEV) {
     const { installFixtures } = await import('./dev/fixtures');
     installFixtures(engine, scene, ui);
 } }

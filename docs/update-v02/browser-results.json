@@ -1,0 +1,109 @@
+{
+  "tests": [
+    {
+      "name": "Prologue pauses combat, pages advance and then give control",
+      "pass": true
+    },
+    {
+      "name": "Survivor and first Ember ring have connected story scenes",
+      "pass": true
+    },
+    {
+      "name": "First boss materials build fire and shelter; IndexedDB reload keeps both and Ember",
+      "pass": true
+    },
+    {
+      "name": "Representative boss 1 moves, attacks and renders",
+      "pass": true,
+      "hp": 100,
+      "phase": 0
+    },
+    {
+      "name": "Representative boss 5 moves, attacks and renders",
+      "pass": true,
+      "hp": 128,
+      "phase": 0
+    },
+    {
+      "name": "Representative boss 15 moves, attacks and renders",
+      "pass": true,
+      "hp": 198,
+      "phase": 0
+    },
+    {
+      "name": "Representative boss 25 moves, attacks and renders",
+      "pass": true,
+      "hp": 226.5,
+      "phase": 0
+    },
+    {
+      "name": "Representative boss 30 moves, attacks and renders",
+      "pass": true,
+      "hp": 256,
+      "phase": 0
+    },
+    {
+      "name": "Combat animation contact frames captured",
+      "pass": true
+    },
+    {
+      "name": "Weapon sprite bow",
+      "pass": true
+    },
+    {
+      "name": "Weapon sprite axe",
+      "pass": true
+    },
+    {
+      "name": "Death retry restores boss entrance",
+      "pass": true
+    },
+    {
+      "name": "Ending valley preserves continued play",
+      "pass": true
+    },
+    {
+      "name": "Ending hearth preserves continued play",
+      "pass": true
+    },
+    {
+      "name": "Emulated simultaneous touch movement and attack",
+      "pass": true,
+      "moved": 95.6201215468143,
+      "combo": 3
+    },
+    {
+      "name": "Mobile page does not overflow",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "missing": [],
+  "performance": [
+    {
+      "label": "1440x900 desktop, headless Chromium automatic Canvas fallback, default high quality",
+      "seconds": 5,
+      "samples": [
+        27.146562446475784,
+        28.359921834856838,
+        29.76994137614263,
+        31.077456032106973,
+        31.55809202408023
+      ],
+      "mean": 29.582394742732486
+    },
+    {
+      "label": "390x844 touch emulation DPR1, automatic Canvas fallback, high quality, no CPU throttle",
+      "seconds": 5,
+      "samples": [
+        52.4140625,
+        54.560546875,
+        56.17041015625,
+        57.6278076171875,
+        58.470855712890625
+      ],
+      "mean": 55.84873657226562
+    }
+  ],
+  "browser": "151.0.7922.34"
+}

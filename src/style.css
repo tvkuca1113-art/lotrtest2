@@ -9,3 +9,20 @@
 @media(pointer:coarse),(max-width:600px){.close,.top-tools button,#quick-nav button,.tabs button{min-width:48px;min-height:48px}.settings-grid select,.settings-grid input[type=checkbox]{min-height:28px}.title-content{padding-top:3vh}}
 
 .export-download{display:inline-flex;align-items:center;min-height:48px;background:#c2a264;color:#171c1b;padding:12px 22px;text-decoration:none;border:1px solid #dcc18c;pointer-events:auto}.export-preview{max-width:100%;max-height:60vh;display:block;margin:auto;border:1px solid #c2a26455}
+/* Narrative presentation uses the paused world as a stage. */
+.story-screen{position:fixed;inset:0;z-index:160;pointer-events:auto;display:flex;align-items:center;isolation:isolate;background:#121d1b;overflow:hidden}
+.story-art{position:absolute;inset:-2%;z-index:-3;background-image:var(--story-art);background-position:center;background-size:cover;animation:story-drift 24s ease-out both}
+.story-screen:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,20,18,.94) 0%,rgba(10,20,18,.75) 32%,rgba(10,20,18,.13) 80%),linear-gradient(0deg,#0c1715aa,transparent 55%);pointer-events:none}
+.story-screen.in-world{background:transparent;align-items:flex-end}
+.story-screen.in-world:after{background:linear-gradient(0deg,rgba(9,18,15,.98),rgba(9,18,15,.93) 28%,transparent 75%)}
+.story-copy{width:min(620px,58vw);margin:7vh 0 7vh 8vw;animation:story-enter .7s ease both}
+.story-copy .eyebrow{font-size:11px;letter-spacing:.24em;color:#d1b777;margin-bottom:28px}
+.story-copy h1{font:normal clamp(32px,4.5vw,66px)/1.09 Georgia,serif;color:#efe6d2;margin:0 0 24px;text-wrap:balance}
+.story-body{font:17px/1.85 system-ui,sans-serif;color:#d6d7c8;max-width:540px;margin-bottom:25px}
+.story-speaker{font:italic 16px Georgia,serif;color:#c7ab73;margin:0 0 12px}
+.story-progress{display:flex;align-items:center;gap:8px;margin:24px 0;color:#9ca89c}.story-progress span{width:30px;height:2px;background:#556058}.story-progress span.current{background:#d4b576}.story-progress small{margin-left:12px;font-size:11px}
+.story-next{min-height:52px;padding:14px 24px;font-size:14px}.story-next span{margin-left:22px}.story-skip{background:transparent;border:0;min-height:48px;color:#b5bbae;font-size:12px;margin-left:14px}.story-waits{display:block;color:#899a8c;margin-top:18px;font-size:11px}
+.story-screen.in-world .story-copy{width:min(760px,80vw);margin-bottom:5vh}.story-screen.in-world .story-body{max-width:680px}.story-screen.in-world h1{font-size:clamp(30px,3.4vw,48px)}
+@keyframes story-drift{from{transform:scale(1.04) translateX(0)}to{transform:scale(1.10) translateX(-1%)}}@keyframes story-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.story-copy,.story-screen.in-world .story-copy{width:auto;margin:0 25px 30px}.story-screen{align-items:flex-end}.story-art{background-position:65% center}.story-screen:after{background:linear-gradient(0deg,#0b1816 5%,#0b1816e8 55%,#0b18162e 100%)}.story-copy h1{font-size:36px;margin-bottom:16px}.story-body{font-size:14px;line-height:1.75}.story-copy .eyebrow{font-size:9px;margin-bottom:16px}.story-waits{display:none}.story-progress{margin:18px 0}.story-skip{margin:8px 0 0}.story-screen.in-world:after{background:linear-gradient(0deg,#0b1816 20%,#0b1816d9 62%,transparent)} }
+@media(prefers-reduced-motion:reduce){.story-art,.story-copy{animation:none}}
