@@ -15,7 +15,7 @@ export class Controls {
             this.remapped(this.remap, ev.code);
             this.remap = null;
             return;
-        } if (!e)
+        } if (!e || e.state==='STORY')
             return; if ((ev.target as HTMLElement)?.matches('input,textarea,select'))
             return; const action = Object.entries(e.save.settings.bindings).find(([, v]) => v === ev.code)?.[0]; if (action || ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(ev.code))
             ev.preventDefault(); this.keys.add(ev.code); if (ev.repeat)

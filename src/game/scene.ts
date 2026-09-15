@@ -1,3 +1,5 @@
+import {canopyTarget,easeAlpha} from '../world/nature';
+import {CombatEffects,slash,weaponRig} from './effects';
 import { assetUrl } from '../assets';
 import Phaser from 'phaser';
 import type { Actor, Point, WorldObject, Hazard, Building } from '../types';
@@ -17,6 +19,9 @@ export class WorldScene extends Phaser.Scene {
     objectImages = new Map<string, Phaser.GameObjects.Image>();
     floor: Phaser.GameObjects.Image | null = null;
     graphics!: Phaser.GameObjects.Graphics;
+    groundFX!: Phaser.GameObjects.Graphics;
+    combatFX = new CombatEffects();
+    silhouette!: Phaser.GameObjects.Image;
     weather!: Phaser.GameObjects.Graphics;
     labels!: Phaser.GameObjects.Text;
     floats: {
@@ -46,12 +51,12 @@ export class WorldScene extends Phaser.Scene {
     lastMini = 0;
     constructor() { super('WORLD'); }
     preload() { const progress = document.getElementById('loading-progress'); this.load.on('progress', (v: number) => { if (progress)
-        progress.style.width = (v * 100) + '%'; }); this.load.atlas('world', assetUrl('assets/world-atlas.png'), assetUrl('assets/world-atlas.json')); for (const material of ['forest', 'earth', 'stone', 'snow'])
+        progress.style.width = (v * 100) + '%'; }); this.load.spritesheet('traveller',assetUrl('assets/traveller-poses.webp'),{frameWidth:256,frameHeight:256});this.load.spritesheet('enemies',assetUrl('assets/enemy-poses.webp'),{frameWidth:256,frameHeight:256});this.load.spritesheet('dark-enemies',assetUrl('assets/dark-enemy-poses.webp'),{frameWidth:256,frameHeight:256});this.load.spritesheet('weapons',assetUrl('assets/weapon-poses.webp'),{frameWidth:256,frameHeight:256});this.load.atlas('nature',assetUrl('assets/nature-atlas.webp'),assetUrl('assets/nature-atlas.json')); this.load.atlas('world', assetUrl('assets/world-atlas.png'), assetUrl('assets/world-atlas.json')); for (const material of ['forest', 'earth', 'stone', 'snow'])
         this.load.image('ground-' + material, assetUrl('assets/ground-' + material + '.webp')); }
-    create() { this.graphics = this.add.graphics().setDepth(10000); this.weather = this.add.graphics().setDepth(9000).setScrollFactor(0); this.labels = this.add.text(0, 0, '', { fontFamily: 'Georgia', fontSize: '15px', color: '#f4e9d4', backgroundColor: '#171c1bdd', padding: { x: 10, y: 8 }, align: 'center' }).setOrigin(.5, 1).setDepth(11000); this.cameras.main.setBackgroundColor('#162820'); this.loaded = true; this.onReady(); this.scale.on('resize', () => this.resize()); this.resize(); }
+    create() { this.groundFX=this.add.graphics().setDepth(-500);this.silhouette=this.add.image(0,0,'traveller',0).setOrigin(.5,.90).setDepth(8900).setTintFill(0xe3d6ad).setAlpha(0);this.graphics = this.add.graphics().setDepth(10000); this.weather = this.add.graphics().setDepth(9000).setScrollFactor(0); this.labels = this.add.text(0, 0, '', { fontFamily: 'Georgia', fontSize: '15px', color: '#f4e9d4', backgroundColor: '#171c1bdd', padding: { x: 10, y: 8 }, align: 'center' }).setOrigin(.5, 1).setDepth(11000); this.cameras.main.setBackgroundColor('#162820'); this.loaded = true; this.onReady(); this.scale.on('resize', () => this.resize()); this.resize(); }
     bind(e: Engine) { this.engine = e; e.events.push(ev => this.event(ev)); if (this.loaded)
         this.rebuild(); }
-    event(ev: GameEvent) { if (ev.type === 'world')
+    event(ev: GameEvent) { if(ev.type==='hit'&&ev.p)this.combatFX.hit(ev.p,ev.value??0); if (ev.type === 'world')
         this.rebuild(); if (ev.type === 'float' && ev.p && this.floats.length < 24) {
         const p = project(ev.p), txt = this.add.text(p.x, p.y - 68, ev.text ?? '', { fontFamily: 'Georgia', fontSize: '17px', color: ev.text?.startsWith('+') ? '#c8e0b3' : '#f2dfb5', stroke: '#171c1b', strokeThickness: 3 }).setOrigin(.5).setDepth(14000);
         this.floats.push({ text: txt, life: .8 });
@@ -59,7 +64,21 @@ export class WorldScene extends Phaser.Scene {
         this.cameras.main.shake(90, .002); }
     resize() { this.cameras.main.setZoom(this.scale.width < 600 ? .84 : this.scale.width < 950 ? .95 : 1.08); }
     aimAt(x: number, y: number) { const p = this.cameras.main.getWorldPoint(x, y); return unproject(p); }
-    addProp(frame: string, p: Point, height: number, depth?: number) { const at = project(p); const img = this.add.image(at.x, at.y, 'world', frame).setOrigin(.5, .93); img.setScale(height / img.height); img.setDepth(depth ?? at.y); img.setData('occludes', frame === 'tree' || frame === 'pine' || frame === 'ruin'); this.staticGroup.push(img); return img; }
+    addProp(frame: string, p: Point, height: number, depth?: number) {
+        const at=project(p), nature=this.textures.get('nature').has(frame), key=nature?'nature':'world';
+        const img=this.add.image(at.x,at.y,key,frame).setOrigin(.5,.96).setScale(height/256).setDepth(depth??at.y);
+        if(!nature)img.setScale(height/img.height);
+        const tree=['oak','birch','fir','deadwood','tree','pine'].includes(frame);
+        img.setData('occludes',tree||frame==='ruin');img.setData('baseY',at.y);img.setData('wind',tree);img.setData('phase',p.x*.01+p.y*.02);
+        this.staticGroup.push(img);
+        if(tree){
+            // Trunk/root pixels remain opaque; only the canopy eases out on actual head overlap.
+            const trunk=this.add.image(at.x,at.y,key,frame).setOrigin(.5,.96).setScale(img.scaleX).setDepth(img.depth-.01);
+            trunk.setCrop(0,trunk.height*.58,trunk.width,trunk.height*.42);img.setCrop(0,0,img.width,img.height*.58);this.staticGroup.push(trunk);
+            img.setData('trunk',trunk);
+        }
+        return img;
+    }
     rebuild() {
         if (!this.loaded || !this.engine?.map)
             return;
@@ -79,19 +98,18 @@ export class WorldScene extends Phaser.Scene {
         }
         this.drawGround();
         for (const prop of e.map.props) {
-            if (prop.kind === 'grass')
-                continue;
+            if (prop.kind === 'grass' && e.save.settings.quality==='low') continue;
             const frame = prop.kind === 'rock' ? 'rock' : prop.kind === 'ruin' ? 'ruin' : prop.kind;
-            const img = this.addProp(frame, toWorld(prop), frame === 'pine' ? 150 + prop.variant * 14 : frame === 'tree' ? 130 : frame === 'ruin' ? 125 : 58);
+            const img = this.addProp(frame, toWorld(prop), ({oak:187,birch:167,fir:194,deadwood:165,boulder:84,stones:40,outcrop:120,log:65,fern:46,flowers:48,reeds:64,grass:24,runestone:90,stump:54,wall:85}[frame]??(frame==='pine'?180:frame==='tree'?180:frame==='ruin'?125:58))*(1+prop.variant*.09));
             if (e.season === 'Winter')
                 img.setTint(0xb7c9c9);
-            else if (e.season === 'Autumn' && frame === 'tree')
+            else if (e.season === 'Autumn' && ['tree','oak','birch','flowers'].includes(frame))
                 img.setTint(0xd9b37b);
         }
         if (e.state === 'HOME' || e.state === 'PAUSED' && e.previous === 'HOME') {
             for (let i = 0; i < 13; i++) {
                 const q = toWorld({ x: i % 2 ? 1 : e.map.width - 2, y: 2 + i % 7 * 2 });
-                this.addProp('pine', q, 145 + i % 3 * 24);
+                this.addProp(i%3===0?'oak':'fir', q, 162 + i % 3 * 20);this.addProp(i%2?'fern':'boulder',{x:q.x+55,y:q.y+45},i%2?50:80);
             }
             for (const b of e.save.buildings)
                 this.building(b);
@@ -119,6 +137,7 @@ export class WorldScene extends Phaser.Scene {
             for (const o of e.objects)
                 this.object(o);
         }
+        this.combatFX.sparks=[];
         this.footprints = [];
         this.cameraReady = false;
         this.drawMini();
@@ -149,17 +168,34 @@ export class WorldScene extends Phaser.Scene {
         c.fillRect(minX, minY, w, h);
         c.fillStyle = snow ? '#829b994a' : '#18372588';
         c.fillRect(minX, minY, w, h);
+        if(m.river){
+            const river=m.river,trace=()=>{c.beginPath();river.points.forEach((p,i)=>{const q=project(p);if(i===0)c.moveTo(q.x,q.y);else c.lineTo(q.x,q.y);});};
+            c.lineJoin='round';c.lineCap='round';trace();c.lineWidth=river.width*1.45;c.strokeStyle=river.lava?'#443b30':'#616b51';c.stroke();
+            trace();c.lineWidth=river.width*1.21;c.strokeStyle=river.lava?'#272526':'#2c534b';c.stroke();
+            trace();c.lineWidth=river.width;c.strokeStyle=river.lava?'#9d502d':'#214d52';c.stroke();
+            trace();c.lineWidth=river.width*.56;c.strokeStyle=river.lava?'#d3823d':'#2d6570';c.stroke();
+            const waterRandom=rng(e.stage.seed+503);
+            for(let i=0;i<river.points.length;i++){
+                const p=project(river.points[i]);
+                for(let n=0;n<6;n++){const offset=(waterRandom()-.5)*river.width*.95;c.fillStyle=river.lava?'#edc26923':n%3===0?'#b0d1be25':'#0c343744';c.beginPath();c.ellipse(p.x+offset,p.y+waterRandom()*12,3+waterRandom()*9,1+waterRandom()*3,-.2,0,Math.PI*2);c.fill();}
+                if(i%2===0){c.fillStyle='#83948065';c.beginPath();c.ellipse(p.x+river.width*.53,p.y,4+waterRandom()*7,2+waterRandom()*4,0,0,Math.PI*2);c.fill();}
+            }
+            for(let i=0;i<river.points.length;i+=3){const p=project(river.points[i]);c.strokeStyle=river.lava?'#edb05c':'#a5d2c13f';c.lineWidth=1.2;c.beginPath();c.ellipse(p.x,p.y,river.width*.28,4,0,.1,Math.PI);c.stroke();}
+        }
         const diamond = (p: Point, s: number) => { c.beginPath(); c.moveTo(p.x, p.y); c.lineTo(p.x + CELL * .88 * s, p.y + CELL * .44 * s); c.lineTo(p.x, p.y + CELL * .88 * s); c.lineTo(p.x - CELL * .88 * s, p.y + CELL * .44 * s); c.closePath(); };
         for (let y = 0; y < m.height; y++)
             for (let x = 0; x < m.width; x++) {
                 const t = m.tiles[y][x];
-                if (!t)
-                    continue;
+                if (!t || t===2 && m.river) continue;
                 const p = project({ x: x * CELL, y: y * CELL });
                 diamond(p, 1);
-                c.fillStyle = t === 2 ? '#425e63' : t === 3 ? '#8aafb4' : floorPattern;
+                c.fillStyle = t === 2 ? '#425e63' : t === 3 ? '#8aafb4' : t === 5 ? '#84765b' : floorPattern;
                 c.fill();
-                if (t !== 2 && t !== 3) {
+                if(t===5){
+                    c.strokeStyle='#362c25';c.lineWidth=2;diamond(p,.94);c.stroke();
+                    for(let slat=1;slat<5;slat++){const k=slat/5;c.beginPath();c.moveTo(p.x+CELL*.88*k,p.y+CELL*.44*k);c.lineTo(p.x-CELL*.88*(1-k),p.y+CELL*.44*(1+k));c.stroke();}
+                }
+                if (t !== 2 && t !== 3 && t!==5) {
                     diamond(p, 1);
                     c.fillStyle = snow ? '#718b7a21' : rock ? '#28352930' : '#53614a2b';
                     c.fill();
@@ -218,6 +254,14 @@ export class WorldScene extends Phaser.Scene {
         this.textures.addCanvas(key, canvas);
         this.floor = this.add.image(minX, minY, key).setOrigin(0).setScale(1 / scale).setDepth(-10000);
     }
+    drawWater(){
+        const e=this.engine!,river=e.map.river;if(!river)return;const g=this.groundFX;
+        for(let i=0;i<river.points.length;i+=e.save.settings.quality==='low'?6:2){
+            const p=river.points[i],x=p.x+Math.sin(i*3.1+e.clock*.7)*river.width*.22,y=p.y+(e.clock*17%24),tx=Math.floor(x/CELL),ty=Math.floor(y/CELL);
+            if(e.map.tiles[ty]?.[tx]!==2)continue;const q=project({x,y});
+            g.lineStyle(1,river.lava?0xe8b362:0xc1e0d4,.12+Math.sin(e.clock*1.2+i)*.06);g.lineBetween(q.x-10,q.y,q.x+10,q.y-3);
+        }
+    }
     drawMini() { if (!this.engine)
         return; const c = this.minimap ?? document.querySelector<HTMLCanvasElement>('#minimap'); if (!c)
         return; this.minimap = c; const ctx = c.getContext('2d')!, e = this.engine, m = e.map; ctx.clearRect(0, 0, c.width, c.height); const sx = c.width / m.width, sy = c.height / m.height; ctx.fillStyle = '#192620'; ctx.fillRect(0, 0, c.width, c.height); for (let y = 0; y < m.height; y++)
@@ -241,6 +285,8 @@ export class WorldScene extends Phaser.Scene {
         points.push({ x: p.x + Math.cos(a) * r, y: p.y + Math.sin(a) * r });
     } this.polygon(points, color, alpha, stroke); }
     hazard(h: Hazard) {
+        if(h.kind==='slash'){slash(this.graphics,h,this.engine!.clock);return;}
+        if(h.delay<=0&&h.shape==='cone'&&['sweep','double','echo','shield','counter','stances'].includes(h.kind))slash(this.graphics,h,this.engine!.clock);
         const warn = h.delay > 0, color = h.friendly ? h.color : warn ? 0xe0ad75 : 0xf4c89c;
         const alpha = h.friendly ? .18 : warn ? .08 : .27;
         const p: Point[] = [];
@@ -278,12 +324,23 @@ export class WorldScene extends Phaser.Scene {
         }
     }
     renderActor(a: Actor) {
-        const e = this.engine!, base = a.kind === 'player' ? 76 : a.boss ? (a.kind === 'troll' ? 155 : a.kind === 'spider' ? 133 : 126) : a.kind === 'troll' ? 104 : a.kind === 'warg' ? 70 : a.kind === 'spider' ? 54 : a.kind === 'goblin' ? 57 : 78;
+        const e = this.engine!, base = a.kind === 'player' ? 112 : a.boss ? (a.kind === 'troll' ? 155 : a.kind === 'spider' ? 133 : 126) : a.kind === 'troll' ? 104 : a.kind === 'warg' ? 70 : a.kind === 'spider' ? 54 : a.kind === 'goblin' ? 57 : 78;
         let img = this.actorImages.get(a.id);
         if (!img) {
             const key = a.kind === 'regent' ? 'wight' : a.kind === 'resident' ? 'player' : a.kind;
             img = this.add.image(0, 0, 'world', key).setOrigin(.5, .94);
             this.actorImages.set(a.id, img);
+        }
+        let pose=0;
+        const enemyRow=({goblin:0,orc:1,troll:2,warg:3,uruk:4,wight:5,nazgul:6,spider:7,regent:5} as Record<string,number>)[a.kind];
+        if(a.kind==='player'){
+            if(a.hp<=0)pose=11;else if(e.dodgeTime>0)pose=9;else if(a.flash>0)pose=10;else if(e.strike){const st=e.strike;pose=st.age<st.impact?4:st.age<st.impact+.07?5:st.age<st.duration*.74?6:7;}else if(e.secondaryHeld)pose=8;else if(a.state==='approach')pose=[1,2,3,2][Math.floor(e.clock*9)%4];
+            const family=item(e.save,'weapon')?.family??'sword';
+            if(family!=='sword'&&a.hp>0){const st=e.strike;const weaponPose=st?(st.age<st.impact?1:st.age<st.impact+.10?2:3):e.secondaryHeld?1:0;img.setTexture('weapons',(family==='axe'?4:0)+weaponPose).setOrigin(.5,.90);}else img.setTexture('traveller',pose).setOrigin(.5,.90);
+        } else if(enemyRow!==undefined){
+            const follow=e.hazards.some(h=>h.source===a.id&&h.shape==='cone'&&h.delay<=0&&h.life>0);
+            pose=a.flash>0||a.state==='stagger'?3:a.state==='telegraph'?1:a.state==='attack'||follow?2:0;
+            img.setTexture(enemyRow>=4?'dark-enemies':'enemies',(enemyRow%4)*4+pose).setOrigin(.5,.94);
         }
         const pp = project(a), moving = a.state === 'approach' || a.state === 'patrol', bob = moving ? Math.sin(e.clock * 12 + a.spawn.x) * 2.5 : Math.sin(e.clock * 2.1) * .6;
         let stretch = 1, angle = 0;
@@ -298,21 +355,22 @@ export class WorldScene extends Phaser.Scene {
         else if (a.state === 'stagger')
             angle = Math.sin(e.clock * 30) * .09;
         if (a.hp <= 0) {
-            img.setAlpha(Math.max(0, .6 - a.deadTime * .15)).setRotation(Math.min(1.55, a.deadTime * 3));
+            img.setAlpha(Math.max(0,.8-a.deadTime*.2)).setRotation(a.kind==='player'?0:Math.min(1.45,a.deadTime*3)).setScale(base/img.height);img.setDepth(pp.y+5);if(a.kind==='player')img.setPosition(pp.x,pp.y);
             img.y = pp.y;
             return;
         }
         if (a.boss && a.kind === 'nazgul' && a.phase === 0) {
             let mount = this.actorImages.get('boss-mount');
             if (!mount) {
-                mount = this.add.image(0, 0, 'world', 'warg').setOrigin(.5, .9);
+                mount = this.add.image(0, 0, 'enemies', 12).setOrigin(.5, .9);
                 this.actorImages.set('boss-mount', mount);
             }
             mount.setPosition(pp.x, pp.y + 8).setScale(125 / mount.height).setDepth(pp.y + 9).setFlipX(Math.cos(a.angle) - Math.sin(a.angle) < 0);
             pp.y -= 38;
         }
+        if(a.lunge?.kind==='leap')pp.y-=Math.sin(Math.min(1,(.42-a.timer)/.42)*Math.PI)*45;
         const s = base / img.height;
-        img.setPosition(pp.x, pp.y + bob).setDepth(pp.y + 10).setScale(s * stretch, s / stretch).setRotation(angle).setFlipX(Math.cos(a.angle) - Math.sin(a.angle) < 0).setAlpha(a.invuln > 0 ? .7 : 1);
+        img.setPosition(pp.x, pp.y + bob).setDepth(project(a).y + 12).setScale(s * stretch, s / stretch).setRotation(angle).setFlipX(Math.cos(a.angle) - Math.sin(a.angle) < 0).setAlpha(a.invuln > 0 ? .7 : 1);
         if (a.flash > 0)
             img.setTint(0xffd7b0);
         else if (a.kind === 'regent')
@@ -322,14 +380,14 @@ export class WorldScene extends Phaser.Scene {
         else
             img.clearTint();
         const g = this.graphics;
-        g.fillStyle(0x0c1511, .27);
-        g.fillEllipse(pp.x, pp.y + 2, a.radius * 2.2, a.radius * .75);
+        this.groundFX.fillStyle(0x0c1511,.33);this.groundFX.fillEllipse(pp.x,pp.y+2,a.radius*2.4,a.radius*.85);
         if (a.id !== 'player' && !a.boss && a.hp < a.maxHp) {
             g.fillStyle(0x141d18, .9);
             g.fillRect(pp.x - 22, pp.y - base - 8, 44, 4);
             g.fillStyle(0xc2a264, 1);
             g.fillRect(pp.x - 22, pp.y - base - 8, 44 * a.hp / a.maxHp, 4);
         }
+        weaponRig(g,a,e);
         if (a.id === 'player') {
             if (a.barrier > 0)
                 this.circle(a, 36, 0xd6ceac, .12);
@@ -339,17 +397,7 @@ export class WorldScene extends Phaser.Scene {
                 g.lineStyle(2, 0xc2a264, .7);
                 g.lineBetween(pp.x - 8, pp.y - 39, pp.x + 8, pp.y - 31);
             }
-            const weapon = item(e.save, 'weapon')?.family;
-            if (weapon === 'bow') {
-                g.lineStyle(2, 0xceb182, 1);
-                g.strokeEllipse(pp.x + 18, pp.y - 35, 15, 31);
-            }
-            else if (weapon === 'axe') {
-                g.lineStyle(3, 0x836348, 1);
-                g.lineBetween(pp.x + 13, pp.y - 15, pp.x + 25, pp.y - 55);
-                g.fillStyle(0xbac1b6, 1);
-                g.fillTriangle(pp.x + 15, pp.y - 56, pp.x + 36, pp.y - 56, pp.x + 28, pp.y - 42);
-            }
+
         }
     }
     update(_time: number, delta: number) {
@@ -365,13 +413,24 @@ export class WorldScene extends Phaser.Scene {
             this.accumulator -= 1 / 60;
             steps++;
         }
-        this.graphics.clear();
+        this.graphics.clear();this.groundFX.clear();
         this.weather.clear();
         const pp = project(e.player);
-        for (const prop of this.staticGroup) {
-            if (prop instanceof Phaser.GameObjects.Image && prop.getData('occludes'))
-                prop.setAlpha(Math.abs(prop.x - pp.x) < 65 && prop.y > pp.y - 15 && prop.y < pp.y + prop.displayHeight * .65 ? .28 : 1);
+        const dt=Math.min(delta,100)/1000, running=['HOME','EXPLORING','BOSS_FIGHT','STAGE_COMPLETE'].includes(e.state);
+        let occluded=0;
+        for(const prop of this.staticGroup){
+            if(!(prop instanceof Phaser.GameObjects.Image))continue;
+            const view=this.cameras.main.worldView,visible=prop.x>view.left-240&&prop.x<view.right+240&&prop.y>view.top-100&&prop.y<view.bottom+300;
+            prop.setVisible(visible);if(!visible)continue;
+            if(prop.getData('occludes')){
+                const target=canopyTarget({x:prop.x,y:prop.y,width:prop.displayWidth,height:prop.displayHeight},pp);
+                prop.setAlpha(easeAlpha(prop.alpha,target,dt));occluded=Math.max(occluded,1-prop.alpha);
+            }
+            if(prop.getData('wind'))prop.setRotation(Math.sin(e.clock*.65+prop.getData('phase'))*.008);
         }
+        const playerImage=this.actorImages.get('player');
+        if(playerImage){this.silhouette.setTexture(playerImage.texture.key,playerImage.frame.name).setPosition(playerImage.x,playerImage.y).setScale(playerImage.scaleX,playerImage.scaleY).setFlipX(playerImage.flipX).setRotation(playerImage.rotation).setAlpha(occluded*.40);}
+        this.drawWater();
         if (this.exporting) { }
         else if (!this.cameraReady) {
             this.cameras.main.centerOn(pp.x, pp.y - 30);
@@ -379,7 +438,7 @@ export class WorldScene extends Phaser.Scene {
         }
         else {
             const cam = this.cameras.main;
-            cam.centerOn(Phaser.Math.Linear(cam.midPoint.x, pp.x, .09), Phaser.Math.Linear(cam.midPoint.y, pp.y - 20, .09));
+            cam.centerOn(Phaser.Math.Linear(cam.midPoint.x, pp.x, 1-Math.exp(-dt*7)), Phaser.Math.Linear(cam.midPoint.y, pp.y - 20, 1-Math.exp(-dt*7)));
         }
         if (e.season === 'Winter') {
             if (e.player.state === 'approach' && e.clock - this.lastFoot > .22) {
@@ -397,8 +456,8 @@ export class WorldScene extends Phaser.Scene {
             }
             this.footprints = this.footprints.filter(f => f.life > 0);
         }
-        for (const h of e.hazards)
-            this.hazard(h);
+        for (const h of e.hazards) this.hazard(h);
+        this.combatFX.draw(this.graphics,running?dt:0);
         if (e.shelter)
             this.circle(e.shelter, e.shelterRadius, 0xf2d298, .14);
         if (e.state === 'HOME' || e.state === 'PAUSED' && e.previous === 'HOME') {
@@ -440,7 +499,8 @@ export class WorldScene extends Phaser.Scene {
         for (const p of e.projectiles) {
             const q = project(p), tail = project({ x: p.x - p.vx * .035, y: p.y - p.vy * .035 });
             this.graphics.lineStyle(p.kind === 'venom' ? 4 : 2, p.friendly ? (p.kind === 'venom' ? 0xa4b965 : 0xe4d8bc) : 0xeea26f, 1);
-            this.graphics.lineBetween(tail.x, tail.y, q.x, q.y);
+            this.graphics.lineBetween(tail.x,tail.y-30,q.x,q.y-30);
+            const len=Math.max(1,Math.hypot(q.x-tail.x,q.y-tail.y)),dx=(q.x-tail.x)/len,dy=(q.y-tail.y)/len;this.graphics.fillStyle(p.friendly?0xf4ead1:0xeeaa81,1);this.graphics.fillTriangle(q.x+dx*5,q.y-30+dy*5,q.x-dx*4-dy*3,q.y-30-dy*4+dx*3,q.x-dx*4+dy*3,q.y-30-dy*4-dx*3);
         }
         for (const c of e.loot) {
             const p = project(c);
@@ -450,7 +510,10 @@ export class WorldScene extends Phaser.Scene {
         const near = e.objects.filter(o => !o.done && distance(o, e.player) < 110 && (o.kind !== 'exit' || e.state === 'STAGE_COMPLETE')).sort((a, b) => distance(a, e.player) - distance(b, e.player))[0];
         if (near && ['EXPLORING', 'STAGE_COMPLETE'].includes(e.state)) {
             const p = project(near);
-            this.labels.setPosition(p.x, p.y - 100).setText('[F] ' + near.label).setVisible(true);
+            const mobile=this.scale.width<600,cam=this.cameras.main,view=cam.worldView;
+            this.labels.setWordWrapWidth(mobile?210:320).setText((mobile?'':'['+(e.save.settings.bindings.interact??'KeyF').replace('Key','')+'] ')+near.label).setVisible(true);
+            const half=this.labels.displayWidth/2,padding=10/cam.zoom;
+            this.labels.setPosition(Phaser.Math.Clamp(p.x,view.left+half+padding,view.right-half-padding),p.y-88);
         }
         else
             this.labels.setVisible(false);

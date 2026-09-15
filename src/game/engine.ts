@@ -1,3 +1,4 @@
+import { narrative } from '../content/story';
 import { message } from '../content/messages';
 import type { State, Save, Actor, WorldMap, WorldObject, StageDef, Point, Hazard, Projectile, RingId, AttackKind, Season, Family } from '../types';
 import { STAGES, stageById } from '../content/stages';
@@ -18,6 +19,19 @@ export type GameEvent = {
 };
 export class Engine {
     state: State = 'BOOT';
+    presentationEnabled = false;
+    storyId = '';
+    storyReturn: State = 'EXPLORING';
+    presentStory(id: string, back: State = this.state) {
+        if (!this.presentationEnabled || !narrative[id] || this.save.claimed.includes('story-' + id)) return;
+        this.storyId = id; this.storyReturn = back; this.clearInputs(); this.setState('STORY');
+    }
+    finishStory() {
+        if (this.state !== 'STORY') return;
+        const key = 'story-' + this.storyId;
+        if (!this.save.claimed.includes(key)) this.save.claimed.push(key);
+        this.persist(); this.clearInputs(); this.setState(this.storyReturn);
+    }
     previous: State = 'HOME';
     map!: WorldMap;
     stage: StageDef = STAGES[0];
@@ -60,6 +74,7 @@ export class Engine {
     lastStep = 0;
     inputEnabled = true;
     bossName = '';
+    strike: {weapon:Family;age:number;impact:number;duration:number;angle:number;radius:number;width:number;damage:number;charged:boolean;applied:boolean;combo:number}|null=null;
     escortMoving = false;
     escortTarget = 0;
     escortPath: Point[] = [];
@@ -74,12 +89,12 @@ export class Engine {
     toast(text: string) { this.emit({ type: 'toast', text }); }
     setState(state: State) { this.state = state; this.emit({ type: 'state' }); }
     persist() { void this.store.put(this.save); }
-    resetTransient() { this.enemies = []; this.objects = []; this.hazards = []; this.projectiles = []; this.loot = []; this.pending.clear(); this.synergyCd = {}; this.inputMove = { x: 0, y: 0 }; this.attackHeld = false; this.secondaryHeld = false; this.charge = 0; this.aim = null; this.dodgeTime = 0; this.barrierTime = 0; this.shelterTime = 0; this.shelter = null; this.stopTime = 0; this.escortMoving = false; this.escortTarget = 0; this.escortPath = []; this.ritual = null; }
+    resetTransient() { this.strike=null; this.enemies = []; this.objects = []; this.hazards = []; this.projectiles = []; this.loot = []; this.pending.clear(); this.synergyCd = {}; this.inputMove = { x: 0, y: 0 }; this.attackHeld = false; this.secondaryHeld = false; this.charge = 0; this.aim = null; this.dodgeTime = 0; this.barrierTime = 0; this.shelterTime = 0; this.shelter = null; this.stopTime = 0; this.escortMoving = false; this.escortTarget = 0; this.escortPath = []; this.ritual = null; }
     start() { const cp = this.save.checkpoint; if (cp.where === 'home')
         this.loadHome();
     else
         this.loadMission(cp.stage, cp.boss, true, cp.mode); }
-    loadHome() { this.resetTransient(); this.map = homeMap(this.save); this.season = seasonAt(this.save.day); this.player = actor('player', 'player', this.map.spawn, maxHp(this.save)); refillPlayer(this.save, this.player); this.save.checkpoint = { where: 'home', stage: Math.min(30, highest(this.save) + 1), boss: false, season: this.season, runId: this.save.runId, mode: 'campaign', objectives: [] }; this.mode = 'campaign'; this.setState('HOME'); this.emit({ type: 'world' }); this.persist(); this.toast(this.save.tier === 0 ? t('firstHome') : t('walkHome')); }
+    loadHome() { this.resetTransient(); this.map = homeMap(this.save); this.season = seasonAt(this.save.day); this.player = actor('player', 'player', this.map.spawn, maxHp(this.save)); refillPlayer(this.save, this.player); this.save.checkpoint = { where: 'home', stage: Math.min(30, highest(this.save) + 1), boss: false, season: this.season, runId: this.save.runId, mode: 'campaign', objectives: [] }; this.mode = 'campaign'; this.setState('HOME'); this.emit({ type: 'world' }); this.persist(); this.toast(this.save.tier === 0 ? t('firstHome') : t('walkHome')); if (this.save.cleared.includes(1) && this.save.tier === 0) this.presentStory('first-home'); else { const chapter=Math.floor(highest(this.save)/5)-1; if(chapter>=0) this.presentStory('return-'+chapter); } }
     loadMission(id: number, boss = false, resume = false, mode: Engine['mode'] = 'campaign') {
         this.resetTransient();
         this.stage = stageById(id);
@@ -128,6 +143,8 @@ export class Engine {
         this.toast(id === 1 && !this.save.rings.ember ? t('firstInstruction') : this.stage.objective);
         if (boss)
             this.toast(t('checkpoint'));
+        else if (id === 1 && !this.save.rings.ember && !done.length) this.presentStory('prologue');
+        else if (id % 5 === 1) this.presentStory('chapter-' + this.stage.chapter);
     }
     refreshHome() { if (this.state === 'HOME' || this.state === 'PAUSED' && this.previous === 'HOME') {
         const p = { x: this.player.x, y: this.player.y };
@@ -201,6 +218,7 @@ export class Engine {
             this.emit({ type: 'sound', key: 'ring' });
             this.persist();
             this.emit({ type: 'reward', key: 'ember' });
+            this.presentStory('ember');
             return;
         }
         if (o.kind === 'cache') {
@@ -208,7 +226,7 @@ export class Engine {
                 this.toast(message("engine.013"));
                 return;
             }
-            if (this.season === 'Spring' && o.index === 0 && this.map.tiles.some(row => row.includes(2))) {
+            if (this.season === 'Spring' && o.index === 0 && this.map.tiles[Math.floor(this.map.seasonal.y/CELL)]?.[Math.floor(this.map.seasonal.x/CELL)] === 2) {
                 this.toast(message("engine.014"));
                 return;
             }
@@ -251,7 +269,7 @@ export class Engine {
                 this.completeObjective(o);
         }
     }
-    completeObjective(o: WorldObject) { o.done = true; const count = this.objects.filter(x => x.kind === 'objective').length; objectiveReward(this.save, this.stage.id, o.index, count); this.save.checkpoint.objectives = this.objects.filter(x => x.kind === 'objective' && x.done).map(x => x.index); this.player.maxHp = maxHp(this.save); this.player.hp = Math.min(this.player.maxHp, this.player.hp + 12); this.persist(); this.toast(this.objectiveComplete() ? t('objectiveDone') : this.stage.kind === 'bridge' ? message("engine.019") : this.stage.kind === 'rescue' ? message("engine.020") : message("engine.021")); this.emit({ type: 'sound', key: 'loot' }); }
+    completeObjective(o: WorldObject) { o.done = true; const count = this.objects.filter(x => x.kind === 'objective').length; objectiveReward(this.save, this.stage.id, o.index, count); this.save.checkpoint.objectives = this.objects.filter(x => x.kind === 'objective' && x.done).map(x => x.index); this.player.maxHp = maxHp(this.save); this.player.hp = Math.min(this.player.maxHp, this.player.hp + 12); this.persist(); this.toast(this.objectiveComplete() ? t('objectiveDone') : this.stage.kind === 'bridge' ? message("engine.019") : this.stage.kind === 'rescue' ? message("engine.020") : message("engine.021")); this.emit({ type: 'sound', key: 'loot' }); if(this.stage.id===1) this.presentStory('alda'); }
     findPath(from: Point, to: Point) { const start = { x: Math.floor(from.x / CELL), y: Math.floor(from.y / CELL) }, end = { x: Math.floor(to.x / CELL), y: Math.floor(to.y / CELL) }, q = [start], parent = new Map<string, Point | null>([[`${start.x},${start.y}`, null]]); for (let i = 0; i < q.length; i++) {
         const p = q[i];
         if (p.x === end.x && p.y === end.y) {
@@ -315,18 +333,11 @@ export class Engine {
         const p = this.player, w = item(this.save, 'weapon')?.family ?? 'sword', base = weaponDamage(this.save);
         p.combo = p.combo % 3 + 1;
         p.state = 'attack';
-        p.timer = .22;
+        p.timer = w === 'axe' ? .55 : w === 'bow' ? .36 : .32;
         const scale = charged ? 1 + Math.min(1.5, this.charge) * .65 : 1 + (p.combo === 3 ? .22 + (hasTalent(this.save, 'ranger9') ? .12 : 0) : 0);
         const damage = base * scale * (w === 'bow' && hasTalent(this.save, 'ranger7') ? 1.06 : 1);
         p.attackCd = (w === 'axe' ? .76 : w === 'bow' ? .55 : .38) * (1 - (hasTalent(this.save, 'ranger2') ? .04 : 0) - (inSlot(this.save, 'echo', 'support') ? .05 : 0));
-        if (w === 'bow') {
-            this.fire(p, p.angle, 650, damage, true, 'arrow', charged ? 2 : 1);
-        }
-        else {
-            const radius = (w === 'axe' ? 148 : 112) + (hasTalent(this.save, 'ranger4') ? 10 : 0);
-            this.weaponSweep(p, p.angle, radius, w === 'axe' ? 2.1 : 1.7, damage, 'primary');
-            this.addHazard({ x: p.x, y: p.y, shape: 'cone', radius, angle: p.angle, width: w === 'axe' ? 2.1 : 1.7, length: 0, delay: 0, life: .16, damage: 0, friendly: true, color: 0xe4d8bc, kind: 'slash', source: 'visual' });
-        }
+        this.strike={weapon:w,age:0,impact:w==='axe'?.18:w==='bow'?.12:.075,duration:p.timer,angle:p.angle,radius:(w==='axe'?148:112)+(hasTalent(this.save,'ranger4')?10:0),width:w==='axe'?2.1:1.7,damage,charged,applied:false,combo:p.combo};
         if (p.echo > 0) {
             p.echo = 0;
             const rank = effectiveRank(this.save, 'echo'), echoPower = rank >= 7 ? .55 : rank >= 4 ? .5 : .45;
@@ -339,6 +350,19 @@ export class Engine {
             this.save.bests.practiceDamage = Math.max(this.save.bests.practiceDamage ?? 0, this.dummyDamage);
             this.emit({ type: 'float', text: this.dummyDamage + ' · peak ' + this.save.bests.practiceDamage, p: toWorld({ x: 7, y: 8 }) });
         }
+    }
+    tickStrike(dt:number) {
+        const strike=this.strike;if(!strike)return;
+        strike.age+=dt;
+        if(!strike.applied && strike.age>=strike.impact){
+            strike.applied=true;
+            if(strike.weapon==='bow')this.fire(this.player,strike.angle,650,strike.damage,true,'arrow',strike.charged?2:1);
+            else {
+                this.weaponSweep(this.player,strike.angle,strike.radius,strike.width,strike.damage,'primary');
+                this.addHazard({x:this.player.x,y:this.player.y,shape:'cone',radius:strike.radius,angle:strike.angle,width:strike.width,length:0,delay:0,life:.18,damage:0,friendly:true,color:strike.combo===3?0xd7b878:0xe4e4d3,kind:'slash',source:'visual'});
+            }
+        }
+        if(strike.age>=strike.duration)this.strike=null;
     }
     weaponSweep(p: Point, angle: number, radius: number, width: number, damage: number, source: string) {
         let hits = 0;
@@ -386,7 +410,7 @@ export class Engine {
         return; if (p.stamina < cost) {
         this.toast(t('noStamina'));
         return;
-    } p.stamina -= cost; p.regenDelay = .6; p.invuln = .18 + (hasTalent(this.save, 'ranger5') ? .02 : 0); p.dodgeCd = .8 * (hasTalent(this.save, 'ranger6') ? .92 : 1) * (inSlot(this.save, 'duskveil', 'support') ? .92 : 1); this.dodgeTime = .25; this.lastAim = Math.hypot(this.inputMove.x, this.inputMove.y) > .1 ? { ...this.inputMove } : { x: Math.cos(p.angle), y: Math.sin(p.angle) }; this.emit({ type: 'sound', key: 'dodge' }); }
+    } p.stamina -= cost; p.regenDelay = .6; p.invuln = .18 + (hasTalent(this.save, 'ranger5') ? .02 : 0); p.dodgeCd = .8 * (hasTalent(this.save, 'ranger6') ? .92 : 1) * (inSlot(this.save, 'duskveil', 'support') ? .92 : 1); this.dodgeTime = .25; this.strike=null; this.player.state='idle'; this.lastAim = Math.hypot(this.inputMove.x, this.inputMove.y) > .1 ? { ...this.inputMove } : { x: Math.cos(p.angle), y: Math.sin(p.angle) }; this.emit({ type: 'sound', key: 'dodge' }); }
     heal() { if (!['EXPLORING', 'BOSS_FIGHT', 'HOME'].includes(this.state))
         return; const p = this.player; if (p.flasks <= 0) {
         this.toast(t('noCharges'));
@@ -466,7 +490,7 @@ export class Engine {
                 if (distance(p, this.map.seasonal) < 250) {
                     for (let y = 0; y < this.map.height; y++)
                         for (let x = 0; x < this.map.width; x++)
-                            if (this.map.tiles[y][x] === 2)
+                            if (this.map.tiles[y][x] === 2 && distance(toWorld({x,y}),this.map.seasonal)<CELL*1.6)
                                 this.map.tiles[y][x] = 3;
                     this.toast(message("engine.027"));
                     this.emit({ type: 'world' });
@@ -607,7 +631,7 @@ export class Engine {
         this.setState('STAGE_COMPLETE'); if (first && this.stage.major)
         this.toast(message("engine.031")); }
     finishEnding(choice: 'valley' | 'hearth') { this.save.ending = choice; if (!this.save.cosmetics.includes('dawn'))
-        this.save.cosmetics.push('dawn'); this.persist(); this.setState('STAGE_COMPLETE'); }
+        this.save.cosmetics.push('dawn'); this.persist(); this.setState('STAGE_COMPLETE'); this.presentStory('ending-'+choice,'STAGE_COMPLETE'); }
     startDefence() { this.loadHome(); this.mode = 'defence'; this.wave = 0; this.spawnTimer = 1; this.run = ++this.save.runId; this.setState('EXPLORING'); if (inSlot(this.save, 'stoneward', 'socket')) {
         this.player.barrier = 20;
         this.barrierTime = 120;
@@ -626,7 +650,7 @@ export class Engine {
         tickCooldowns(p, dt);
         for (const k of Object.keys(this.synergyCd))
             this.synergyCd[k] = Math.max(0, this.synergyCd[k] - dt);
-        this.updateAim();
+        if(!this.strike)this.updateAim();
         p.maxHp = maxHp(this.save);
         if (p.regenDelay <= 0)
             p.stamina = Math.min(maxStamina(this.save), p.stamina + dt * (20 + (inSlot(this.save, 'thornwake', 'support') ? 2 : 0) + (hasTalent(this.save, 'guardian8') ? 2 : 0)));
@@ -672,6 +696,7 @@ export class Engine {
             this.charge = Math.min(1.5, this.charge + dt * (hasTalent(this.save, 'ranger3') ? 1.15 : 1));
         if (this.attackHeld)
             this.attack();
+        this.tickStrike(dt);
         for (const e of this.enemies)
             this.enemyTick(e, dt);
         this.hazardTick(dt);
@@ -817,8 +842,16 @@ export class Engine {
             return;
         }
         if (e.state === 'attack') {
+            if(e.lunge){
+                const l=e.lunge,step=Math.min(l.remaining,850*dt),before={x:e.x,y:e.y};
+                moveWithCollision(this.map,e,Math.cos(l.angle)*step,Math.sin(l.angle)*step,e.radius);l.remaining-=step;
+                const pillar=l.kind==='charge'&&this.objects.find(o=>o.kind==='pillar'&&!o.done&&distance(e,o)<95);
+                if(pillar){pillar.done=true;e.hp=Math.max(1,e.hp-e.maxHp*.12);e.state='stagger';e.timer=2.1;e.lunge=undefined;this.toast(message('engine.036'));return;}
+                if(l.remaining<=0||distance(before,e)<step*.3)e.lunge=undefined;
+            }
             e.timer -= dt;
             if (e.timer <= 0) {
+                e.lunge=undefined;
                 e.state = 'recovery';
                 e.timer = e.boss ? 1.15 : 1;
             }
@@ -860,6 +893,7 @@ export class Engine {
             }
     }
     telegraph(e: Actor, kind: AttackKind, delay: number) {
+        if(kind==='leap'){const a=angleTo(e,e.target),length=Math.min(330,distance(e,e.target)),landing={x:e.x,y:e.y};moveWithCollision(this.map,landing,Math.cos(a)*length,Math.sin(a)*length,e.radius);e.target=landing;}
         const angle = angleTo(e, e.target), dmg = (e.boss ? 14 + this.stage.id * 1.1 : 7 + this.stage.id * .8) * (this.mode === 'hard' ? 1.15 : 1);
         const add = (shape: Hazard['shape'], p: Point, radius: number, width: number, length: number, a = angle, d = delay, life = .25, damage = dmg, k: string = kind) => this.addHazard({ ...p, kind: k, shape, radius, angle: a, width, length, delay: d, life, damage, friendly: false, color: 0xce7144, source: e.id });
         switch (kind) {
@@ -881,13 +915,13 @@ export class Engine {
                 add('line', e, 0, 28, 330);
                 break;
             case 'charge':
-                add('line', e, 0, e.boss ? 40 : 25, Math.min(390, distance(e, e.target) + 75));
+                add('line', e, 0, e.boss ? 40 : 25, Math.min(330, distance(e, e.target)),angle,delay,.42);
                 break;
             case 'slam':
                 add('circle', e.target, e.boss ? 100 : 72, 0, 0, 0, delay, .35, dmg * 1.4);
                 break;
             case 'leap':
-                add('circle', e.target, 90, 0, 0, 0, delay, .35, dmg * 1.2);
+                add('circle', e.target, 90, 0, 0, 0, delay+.38, .35, dmg * 1.2);
                 break;
             case 'waves':
             case 'shock':
@@ -959,22 +993,8 @@ export class Engine {
     }
     performAttack(e: Actor, kind: AttackKind) {
         if (kind === 'charge' || kind === 'leap') {
-            const old = { x: e.x, y: e.y }, n = Math.min(330, distance(e, e.target));
-            moveWithCollision(this.map, e, Math.cos(e.angle) * n, Math.sin(e.angle) * n, e.radius);
-            if (kind === 'charge') {
-                for (const o of this.objects)
-                    if (o.kind === 'pillar' && !o.done && distance(e, o) < 95) {
-                        o.done = true;
-                        e.hp = Math.max(1, e.hp - e.maxHp * .12);
-                        e.state = 'stagger';
-                        e.timer = 2.1;
-                        this.toast(message("engine.036"));
-                    }
-                if (distance(old, e) < 40) {
-                    e.state = 'stagger';
-                    e.timer = 1.5;
-                }
-            }
+            e.lunge={from:{x:e.x,y:e.y},angle:e.angle,remaining:Math.min(330,distance(e,e.target)),kind};
+            e.timer=.42;
         }
         if (kind === 'web') {this.objects=this.objects.filter(o=>o.kind!=='web'||!o.done);while(this.objects.filter(o=>o.kind==='web').length>=6){const i=this.objects.findIndex(o=>o.kind==='web');this.objects.splice(i,1);}
             const p = { ...e.target };
@@ -1037,7 +1057,7 @@ export class Engine {
                         }
                     }
                 }
-                else if (!h.hit.has('player') && hitHazard(h, this.player, this.player.radius) && lineOfSight(this.map, h, this.player) && !this.blockedByCover(h, this.player)) {
+                else if (!h.hit.has('player') && (h.kind !== 'charge' || this.enemies.some(a=>a.id===h.source&&distance(a,this.player)<a.radius+this.player.radius+15)) && hitHazard(h, this.player, this.player.radius) && lineOfSight(this.map, h, this.player) && !this.blockedByCover(h, this.player)) {
                     h.hit.add('player');
                     const source = this.enemies.find(e => e.id === h.source);
                     this.damagePlayer(h.damage, source);

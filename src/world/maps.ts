@@ -1,3 +1,4 @@
+import {enrichMap} from './nature';
 import type {WorldMap,Point,Season,StageDef,Tile,Save} from '../types';
 import {homeExtent,footprint,isWalkableBuilding} from '../systems/building';
 export const CELL=48;
@@ -18,7 +19,7 @@ export function makeMap(stage:StageDef,season:Season):WorldMap{
  // A guaranteed approach corridor reaches the checkpoint from the previous room.
  const prev=center(rooms.at(-2)!);paint(Math.min(prev.x,cp.x)-1,prev.y-1,Math.abs(prev.x-cp.x)+3,3);paint(cp.x-1,Math.min(cp.y,prev.y)-1,3,Math.abs(cp.y-prev.y)+3);
  const props:WorldMap['props']=[];for(let y=1;y<height-1;y++)for(let x=1;x<width-1;x++){if(tiles[y][x]===0&&random()<.12)props.push({x,y,kind:stage.chapter===2||stage.chapter===5?(random()<.55?'rock':'ruin'):random()<.6?'pine':'tree',variant:Math.floor(random()*3)});else if(tiles[y][x]===1&&random()<.015&&!rooms.some(r=>x>r.x&&x<r.x+r.w-1&&y>r.y&&y<r.y+r.h-1))props.push({x,y,kind:'grass',variant:0});}
- const objectiveRooms=small?[rooms[0]]:rooms.slice(1,-1);return {width,height,tiles,spawn:toWorld({x:rooms[0].x+2,y:rooms[0].y+rooms[0].h-2}),arena:toWorld(arena),checkpoint:toWorld(cp),exit:toWorld({x:arena.x+3,y:arena.y-3}),objectives:objectiveRooms.map(r=>toWorld(center(r))),caches:[toWorld(branch),toWorld({x:rooms[1].x+1,y:rooms[1].y+1}),toWorld({x:rooms.at(-2)!.x+1,y:rooms.at(-2)!.y+1})],rooms,seasonal:toWorld(seasonal),props};
+ const objectiveRooms=small?[rooms[0]]:rooms.slice(1,-1);const map:WorldMap={width,height,tiles,spawn:toWorld({x:rooms[0].x+2,y:rooms[0].y+rooms[0].h-2}),arena:toWorld(arena),checkpoint:toWorld(cp),exit:toWorld({x:arena.x+3,y:arena.y-3}),objectives:objectiveRooms.map(r=>toWorld(center(r))),caches:[toWorld(branch),toWorld({x:rooms[1].x+1,y:rooms[1].y+1}),toWorld({x:rooms.at(-2)!.x+1,y:rooms.at(-2)!.y+1})],rooms,seasonal:toWorld(seasonal),props};enrichMap(map,stage,season);return map;
 }
 export function homeMap(s:Save):WorldMap{const size=homeExtent(s);const tiles:Tile[][]=Array.from({length:size},(_,y)=>Array.from({length:size},(_,x)=>(x>0&&y>0&&x<size-1&&y<size-1?1:0) as Tile));for(const b of s.buildings)if(!isWalkableBuilding(b)){const f=footprint(b);for(let y=f.y;y<f.y+f.h;y++)for(let x=f.x;x<f.x+f.w;x++)if(tiles[y])tiles[y][x]=0;}return {width:size,height:size,tiles,spawn:toWorld({x:10,y:18}),arena:toWorld({x:10,y:7}),checkpoint:toWorld({x:10,y:18}),exit:toWorld({x:10,y:2}),objectives:[],caches:[],rooms:[{x:1,y:1,w:size-2,h:size-2}],seasonal:toWorld({x:1,y:1}),props:[]};}
 export function walkable(m:WorldMap,x:number,y:number){const t=m.tiles[Math.floor(y/CELL)]?.[Math.floor(x/CELL)];return t!==undefined&&t!==0&&t!==2;}

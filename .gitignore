@@ -1,0 +1,11 @@
+node_modules
+node_modules/
+dist/
+dist-single/
+qa-update/
+*.log
+.DS_Store
+
+.standalone-build/
+release/
+qa-output/

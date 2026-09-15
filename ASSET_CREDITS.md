@@ -29,3 +29,18 @@ Preparation removed the flat magenta staging background, cropped connected compo
 - tsx 4.19.4 and `@types/node` are development dependencies locked by npm; npm package licences remain authoritative.
 
 The game makes no runtime calls to paid APIs or generative services. The generated artwork is already included as local files. Replacing franchise references and content is supported through `src/content/`; rebranding must also update visible titles and fan attribution.
+
+## Living Valley 0.2 additions
+
+Original OpenAI-generated artwork prepared locally into transparent, regularly spaced WebP atlases. The checked-in runtime files are the required deliverables; generation is not needed to run the game. No reference-game media is bundled.
+
+| Runtime file | Contents | Preparation |
+|---|---|---|
+| `traveller-poses.webp` | 12 sword/travel/guard/hurt/death poses, 4×3 | Inspected, cropped, resized to 256 px cells |
+| `weapon-poses.webp` | Bow and two-handed axe, 4 poses each, 4×2 | Same original traveller design, 256 px cells |
+| `enemy-poses.webp` | Goblin, orc, troll, warg; 4 poses per family | 4×4, 256 px cells |
+| `dark-enemy-poses.webp` | Uruk, wight, Nazgûl, giant spider; 4 poses per family | 4×4, 256 px cells |
+| `nature-atlas.webp/json` | 16 original plants, trees, rocks and ruin props | Individually bounded and packed into 256 px cells |
+| `prologue.webp` | Traveller at a ruined river bridge above the northern valley | Optimised 1680 px narrative backdrop |
+
+The earlier static atlas remains in use for settlement structures and residents. New sprite sheets supply explicit attack poses in addition to runtime transforms. New dialogue is in `src/content/story.ts`. Runtime trails, shoreline reflections, canopy masking and contact particles are original code. Existing locally synthesised audio is retained.
